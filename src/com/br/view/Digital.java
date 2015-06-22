@@ -2,50 +2,51 @@ package com.br.view;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.awt.image.Raster;
+import java.awt.image.WritableRaster;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.StreamTokenizer;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 public class Digital {
 
 	private static BufferedImage imagem;
-	File file;
-
-	public static BufferedImage transformarImagem(File file)
-			throws NullPointerException, IOException {
-		int[][] data2D;
-		FileInputStream fileInputStream = new FileInputStream(
-				"src/imagens/lena.pgm");
-		DataInputStream dis = new DataInputStream(fileInputStream);
-
-		// read header text using StreamTokenizer.nextToken()
-		
-		data2D = new int[256][256];
-		for (int row = 0; row < 255; row++) {
-			for (int col = 0; col < 255; col++) {
-				data2D[row][col] = dis.readUnsignedByte();
-				System.out.print(data2D[row][col] + " ");
-			}
-			System.out.println();
+	static Color pixelColour;
+	
+	
+	
+	public static BufferedImage transformarImagem(File file) throws NullPointerException, IOException {
+		int[][] matriz = new int[256][256];
+		ArrayList<String> str = new ArrayList<String>();
+		InputStream is = new FileInputStream(file);
+	     InputStreamReader isr = new InputStreamReader(is);
+	     BufferedReader br = new BufferedReader(isr);
+	 
+	     while (br.ready()) {
+	       str.add(br.readLine());	       
+	     }
+	     int j = 0;
+	     for (int i = 0; i < str.size(); i++) {
+			matriz[i][j] = Integer.valueOf(str.get(j).charAt(i));
+			System.out.print(matriz[i][j]);
 		}
-		
-		imagem = new BufferedImage(256, 256, BufferedImage.TYPE_INT_RGB);
-		
-		for (int i = 0; i < 255; i++) {
-			for (int j = 0; j < 255; j++) {
-				imagem.setRGB(i, j, new Color(data2D[i][j]).getRGB());
-			}
-		}	
-		
-//		for (int i = 0; i < 256; i++) {
-//			for (int j = 0; j < 256; j++) {
-//				imagem.setRGB(i, j, (int) data2D[i][j]);
-//			}
-//
-//		}
+	     
+	     br.close();
+	   
 		return imagem;
+	}
+
+	private static void setPixel(int col, int row, Color pixelColour) {
+		imagem.setRGB(col, row, pixelColour.getRGB());
+
 	}
 
 	public static BufferedImage getImagem() {
@@ -55,5 +56,4 @@ public class Digital {
 	public static void setImagem(BufferedImage imagem) {
 		Digital.imagem = imagem;
 	}
-
 }

@@ -4,7 +4,6 @@
 package com.br.view;
 
 import java.awt.EventQueue;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
