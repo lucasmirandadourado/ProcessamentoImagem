@@ -24,7 +24,7 @@ public class Digital {
 	
 	
 	public static BufferedImage transformarImagem(File file) throws NullPointerException, IOException {
-		int[][] matriz = new int[256][256];
+		Integer[][] matriz = new Integer[256][256];
 		ArrayList<String> str = new ArrayList<String>();
 		InputStream is = new FileInputStream(file);
 	     InputStreamReader isr = new InputStreamReader(is);

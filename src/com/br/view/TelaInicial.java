@@ -132,9 +132,19 @@ public class TelaInicial extends JFrame {
 		JButton btnSelecionarImagem01 = new JButton("Selecionar imagem");
 		btnSelecionarImagem01.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFileChooser jfc = new JFileChooser();
-				if (jfc.showOpenDialog(btnSelecionarImagem01) == JFileChooser.APPROVE_OPTION) {
-					File file = jfc.getSelectedFile();
+				
+				
+				
+				//CODIGO ANTIGO
+				/*
+				final JFileChooser jfc = new JFileChooser(); //OK
+				
+				int returnVal = jfc.showOpenDialog(btnSelecionarImagem01); //OK
+				
+				if (jfc.showOpenDialog(btnSelecionarImagem01) == JFileChooser.APPROVE_OPTION) { //OK
+					
+					File file = jfc.getSelectedFile(); //OK
+					
 					BufferedImage imagemDigital = new BufferedImage(256, 256, BufferedImage.TYPE_INT_RGB);
 					try {
 						imagemDigital = Digital.transformarImagem(file);
@@ -148,7 +158,10 @@ public class TelaInicial extends JFrame {
 					lblImage01.setIcon(new ImageIcon(imagemDigital));	
 					add(lblImage01);
 				}
-
+				
+				validate();
+				repaint();
+				*/
 			}
 		});
 		
