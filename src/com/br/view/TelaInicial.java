@@ -14,6 +14,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -21,10 +22,14 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class TelaInicial extends JFrame {
+	
+	BufferedImage imagem;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -41,6 +46,7 @@ public class TelaInicial extends JFrame {
 	}
 
 	public TelaInicial() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1024, 720);
 		setLocationRelativeTo(null);
@@ -133,35 +139,31 @@ public class TelaInicial extends JFrame {
 		btnSelecionarImagem01.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				
-				
-				//CODIGO ANTIGO
-				/*
-				final JFileChooser jfc = new JFileChooser(); //OK
-				
-				int returnVal = jfc.showOpenDialog(btnSelecionarImagem01); //OK
-				
-				if (jfc.showOpenDialog(btnSelecionarImagem01) == JFileChooser.APPROVE_OPTION) { //OK
+				try{  
 					
-					File file = jfc.getSelectedFile(); //OK
+					//Instanciacao de fileChooser e alteracao do diretorio para buscar a imagem
+					final JFileChooser fileChooser = new JFileChooser();
+					fileChooser.setCurrentDirectory(new File ("C:\\"));
 					
-					BufferedImage imagemDigital = new BufferedImage(256, 256, BufferedImage.TYPE_INT_RGB);
-					try {
-						imagemDigital = Digital.transformarImagem(file);
-					} catch (NullPointerException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					//Verificacao do fileChooser
+					if (fileChooser.showOpenDialog(btnSelecionarImagem01) == JFileChooser.APPROVE_OPTION) {
+						
+						//Cria um file onde eh armazenada a imagem
+						File file = fileChooser.getSelectedFile();
+						
+						//Converte file para image (bufferedImage)
+						imagem = ImageIO.read(file);
+						
+						//adiciona a imagem dentro do label
+						lblImage01.setIcon(new ImageIcon(imagem));
 					}
-					lblImage01.setIcon(new ImageIcon(imagemDigital));	
-					add(lblImage01);
-				}
+					
+				}catch(Exception erro){  
+				        
+					JOptionPane.showMessageDialog(null, "Não foi possivel carregar a imagem.");  
+				        
+				}    
 				
-				validate();
-				repaint();
-				*/
 			}
 		});
 		
