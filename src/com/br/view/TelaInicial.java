@@ -27,6 +27,8 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import com.br.processarImagem.ProcessamentoDaImagem;
+
 public class TelaInicial extends JFrame {
 	
 	BufferedImage imagem;
@@ -151,11 +153,13 @@ public class TelaInicial extends JFrame {
 						//Cria um file onde eh armazenada a imagem
 						File file = fileChooser.getSelectedFile();
 						
+						ProcessamentoDaImagem.processarImagem(file);
+									
 						//Converte file para image (bufferedImage)
-						imagem = ImageIO.read(file);
+						//imagem = ImageIO.read(file);
 						
 						//adiciona a imagem dentro do label
-						lblImage01.setIcon(new ImageIcon(imagem));
+						//lblImage01.setIcon(new ImageIcon(imagem));
 					}
 					
 				}catch(Exception erro){  
