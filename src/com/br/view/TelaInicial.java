@@ -145,7 +145,7 @@ public class TelaInicial extends JFrame {
 					
 					//Instanciacao de fileChooser e alteracao do diretorio para buscar a imagem
 					final JFileChooser fileChooser = new JFileChooser();
-					fileChooser.setCurrentDirectory(new File ("C:\\"));
+					fileChooser.setCurrentDirectory(new File ("src/"));
 					
 					//Verificacao do fileChooser
 					if (fileChooser.showOpenDialog(btnSelecionarImagem01) == JFileChooser.APPROVE_OPTION) {
