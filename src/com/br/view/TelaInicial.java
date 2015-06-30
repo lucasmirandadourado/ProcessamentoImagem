@@ -4,6 +4,7 @@
 package com.br.view;
 
 import java.awt.EventQueue;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -27,11 +28,13 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import com.br.processarImagem.PanelDaImagem;
 import com.br.processarImagem.ProcessamentoDaImagem;
 
 public class TelaInicial extends JFrame {
 	
 	BufferedImage imagem;
+	PanelDaImagem panelDaImagem = new PanelDaImagem();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -48,6 +51,8 @@ public class TelaInicial extends JFrame {
 	}
 
 	public TelaInicial() {
+		
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1024, 720);
@@ -114,30 +119,18 @@ public class TelaInicial extends JFrame {
 		JMenuItem mntmFunoDeDistribuio = new JMenuItem(
 				"Fun\u00E7\u00E3o de Distribui\u00E7\u00E3o Acumulada");
 		mnHistogramas.add(mntmFunoDeDistribuio);
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 0, 0, 0, 256, 0, 256, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 0, 256, 0, 0, 0 };
-		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0,
-				Double.MIN_VALUE };
-		getContentPane().setLayout(gridBagLayout);
-
-		JLabel lblImage01 = new JLabel("");
-		GridBagConstraints gbc_lblImage01 = new GridBagConstraints();
-		gbc_lblImage01.insets = new Insets(0, 0, 5, 5);
-		gbc_lblImage01.gridx = 3;
-		gbc_lblImage01.gridy = 2;
-		getContentPane().add(lblImage01, gbc_lblImage01);
+		getContentPane().setLayout(null);
 
 		JButton btnSelecionarImagem02 = new JButton("Selecionar imagem");
-		GridBagConstraints gbc_btnSelecionarImagem02 = new GridBagConstraints();
-		gbc_btnSelecionarImagem02.gridx = 5;
-		gbc_btnSelecionarImagem02.gridy = 4;
-		getContentPane().add(btnSelecionarImagem02, gbc_btnSelecionarImagem02);
+		btnSelecionarImagem02.setBounds(443, 346, 121, 23);
+		getContentPane().add(btnSelecionarImagem02);
 		
-
+		panelDaImagem.setBounds(100, 100, 200, 200);
+		panelDaImagem.setVisible(true);
+		getContentPane().add(panelDaImagem);
+		
 		JButton btnSelecionarImagem01 = new JButton("Selecionar imagem");
+		btnSelecionarImagem01.setBounds(155, 346, 121, 23);
 		btnSelecionarImagem01.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -153,15 +146,16 @@ public class TelaInicial extends JFrame {
 						//Cria um file onde eh armazenada a imagem
 						File file = fileChooser.getSelectedFile();
 						
-						imagem = ProcessamentoDaImagem.processarImagem(file);
+						panelDaImagem.processarImagem(file);
 									
 						//Converte file para image (bufferedImage)
 						//imagem = ImageIO.read(file);
 						
 						//AQUI PRECISA-SE FAZER ALGUM METODO PAINT
+						//paint(getGraphics().drawImage((Image)imagem, 0, 0, null));
 						
 						//adiciona a imagem dentro do label
-						lblImage01.setIcon(new ImageIcon(imagem));
+						//lblImage01.setIcon(new ImageIcon(imagem));
 						repaint();
 					}
 					
@@ -173,12 +167,7 @@ public class TelaInicial extends JFrame {
 				
 			}
 		});
-		
-		GridBagConstraints gbc_btnSelecionarImagem01 = new GridBagConstraints();
-		gbc_btnSelecionarImagem01.insets = new Insets(0, 0, 0, 5);
-		gbc_btnSelecionarImagem01.gridx = 3;
-		gbc_btnSelecionarImagem01.gridy = 4;
-		getContentPane().add(btnSelecionarImagem01, gbc_btnSelecionarImagem01);		
+		getContentPane().add(btnSelecionarImagem01);		
 
 	}
 }
