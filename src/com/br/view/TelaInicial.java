@@ -153,13 +153,16 @@ public class TelaInicial extends JFrame {
 						//Cria um file onde eh armazenada a imagem
 						File file = fileChooser.getSelectedFile();
 						
-						ProcessamentoDaImagem.processarImagem(file);
+						imagem = ProcessamentoDaImagem.processarImagem(file);
 									
 						//Converte file para image (bufferedImage)
 						//imagem = ImageIO.read(file);
 						
+						//AQUI PRECISA-SE FAZER ALGUM METODO PAINT
+						
 						//adiciona a imagem dentro do label
-						//lblImage01.setIcon(new ImageIcon(imagem));
+						lblImage01.setIcon(new ImageIcon(imagem));
+						repaint();
 					}
 					
 				}catch(Exception erro){  

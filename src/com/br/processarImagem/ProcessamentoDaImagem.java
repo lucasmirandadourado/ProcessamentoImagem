@@ -1,5 +1,9 @@
 package com.br.processarImagem;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.awt.image.Raster;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,7 +13,7 @@ import java.util.Scanner;
 
 public class ProcessamentoDaImagem {
 	
-	public static int [][] processarImagem(File file){
+	public static BufferedImage processarImagem(File file){
 		
 		//instanciar fileInputStream para carregar a imagem na memoria
 		FileInputStream fileInputStream = null;
@@ -75,7 +79,28 @@ public class ProcessamentoDaImagem {
 		     System.out.println();
 		 }
 		
-		return data2D;
+		 BufferedImage imagemParaExibicao = ExibirImagem(larguraDaImagem, alturaDaImagem, data2D);
+		 
+		 return imagemParaExibicao;
+	}
+	
+	public static BufferedImage ExibirImagem(int largura, int altura, int [][] matrizRGB){
+		
+		BufferedImage imagem = new BufferedImage(altura, largura, BufferedImage.TYPE_INT_RGB);
+		Color color;
+		
+		for (int x = 0; x < altura; x++){
+			for (int y = 0; y < largura; y++){
+				
+				int corRGB = matrizRGB[x][y];
+				color = new Color(corRGB, corRGB, corRGB);
+				imagem.setRGB(x, y, color.getRGB());
+				
+			}
+		}
+		
+		return imagem;
+		
 	}
 
 }
