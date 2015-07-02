@@ -1,22 +1,10 @@
-/**
- * 
- */
 package com.br.view;
 
 import java.awt.EventQueue;
-import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -24,12 +12,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
 import com.br.processarImagem.PanelDaImagem;
-import com.br.processarImagem.ProcessamentoDaImagem;
+
+/**
+ * @author Lucas Miranda
+ * @author Daniel Marques
+ */
+
 
 public class TelaInicial extends JFrame {
 	
@@ -146,16 +135,8 @@ public class TelaInicial extends JFrame {
 						//Cria um file onde eh armazenada a imagem
 						File file = fileChooser.getSelectedFile();
 						
-						panelDaImagem.processarImagem(file);
+						panelDaImagem.colocaImagemNoPainel(file.getPath());
 									
-						//Converte file para image (bufferedImage)
-						//imagem = ImageIO.read(file);
-						
-						//AQUI PRECISA-SE FAZER ALGUM METODO PAINT
-						//paint(getGraphics().drawImage((Image)imagem, 0, 0, null));
-						
-						//adiciona a imagem dentro do label
-						//lblImage01.setIcon(new ImageIcon(imagem));
 						repaint();
 					}
 					

@@ -2,126 +2,113 @@ package com.br.processarImagem;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
-
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.awt.Rectangle;
+import javax.swing.border.LineBorder;
+
+/**
+ * @author Bruno Clementino
+ */
 
 public class PanelDaImagem extends JPanel {
+
+	private String caminhoDaImagem = "";
+	private static final String COMENTARIO = "#";
+	private static final String P2 = "P2";
 	
-	static BufferedImage imagem;
+	public int[][] matrizImagem;
+	public int altura;
+	public int largura;
+	BufferedReader imagem;
+	BufferedImage imagemOriginal;
 	
-	/**
-	 * Create the panel.
-	 */
 	public PanelDaImagem() {
 		
-		setBounds(0, 0, 200, 200);
-		setVisible(true);
-
+		setBorder(new LineBorder(new Color(0, 0, 0)));
+		setBounds(new Rectangle(0, 0, 600, 600));
+		setBounds(543, 57, 600, 600);
+				
+	}
+	
+	public void colocaImagemNoPainel(String caminhoDaImagem){
+		try {
+			imagem = new BufferedReader(new FileReader(caminhoDaImagem));
+			geraImagem();
+			
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar abrir a imagem.");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void geraImagem() throws Exception{
+		
+		String type = imagem.readLine();//Ler a primeira linha da mensagem e ignora a descricao do tipo da imagem
+		
+		if (type == null || !type.equals(P2)) {
+            throw new Exception("Formato invalido - Tipo P2 requerido");
+        }
+		
+		// Ignora as linhas com comentários            
+        String linha = null;
+        
+        do {
+            linha = imagem.readLine();
+        } while (linha != null && linha.startsWith(COMENTARIO));
+        
+        //Le o número de linhas e colunas
+        //linha possuirá a resolucao da imagem ex: 256 256
+        String[] dimensao = linha.split(" ");
+        altura  = Integer.parseInt(dimensao[0]);
+        largura = Integer.parseInt(dimensao[1]);    
+        matrizImagem = new int[altura][largura];
+       
+        String [] pixels;
+        int line=0;//coluna onde o pixel se localiza
+        
+        /*A linha onde refere-se ao valor maximo que o pixel pode ter eh ignorado*/
+        linha=imagem.readLine();
+        linha=imagem.readLine();
+        while(linha != null ){
+        	
+        	pixels = linha.split(" ");
+        	for(int i = 0;i<pixels.length;i++){
+        		matrizImagem[line][i] = Integer.parseInt(pixels[i]);
+            	
+        	}
+        	line++;
+        	linha=imagem.readLine();
+        }
+        
+        imagemOriginal = new BufferedImage(altura, largura, BufferedImage.TYPE_INT_RGB);
+        for(int i = 0; i<altura; i++){
+        	for(int j=0;j<largura;j++){
+        		imagemOriginal.setRGB(j, i, corPixel(matrizImagem[i][j]));
+        		repaint();
+        	}
+        	//System.out.println();
+        }
+      //  imagemOriginal = Toolkit.getDefaultToolkit().createImage(imagem.getSource());
+        System.out.println(matrizImagem[0].length+" x "+matrizImagem.length);       
+    }
+	
+	static int corPixel(int corRGB){
+		Color cor = new Color(corRGB, corRGB, corRGB);
+		return cor.getRGB();
 	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
-		g.drawImage(imagem, 0, 0, null);
-		repaint();
-		
+		g.drawImage((Image) imagemOriginal, 0, 0, null);
 	}
-	
-	public static void processarImagem(File file){
-		
-		//instanciar fileInputStream para carregar a imagem na memoria
-		FileInputStream fileInputStream = null;
-		try {
-			fileInputStream = new FileInputStream(file);
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		//instanciar um scanner para leitura dos dados da imagem
-		Scanner scanner = new Scanner(fileInputStream);
-		
-		//discartar o tipo P2
-		scanner.nextLine();
-		
-		int larguraDaImagem = scanner.nextInt();
-		int alturaDaImagem = scanner.nextInt();
-		int valorMaximo = scanner.nextInt();
-		
-		try {
-			fileInputStream.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
-			fileInputStream = new FileInputStream(file);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		DataInputStream dataInputStream = new DataInputStream(fileInputStream);
-		
-		int numnewlines = 4;
-		 while (numnewlines > 0) {
-		     char c = 0;
-		     do {
-		         try {
-					c = (char)(dataInputStream.readUnsignedByte());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		     } while (c != '\n');
-		     numnewlines--;
-		 }
-		
-		// read the image data
-		 int[][] data2D = new int[alturaDaImagem][larguraDaImagem];
-		 for (int row = 0; row < alturaDaImagem; row++) {
-		     for (int col = 0; col < larguraDaImagem; col++) {
-		         try {
-					data2D[row][col] = dataInputStream.readUnsignedByte();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		         System.out.print(data2D[row][col] + " ");
-		     }
-		     System.out.println();
-		 }
-		
-		 imagem = ExibirImagem(larguraDaImagem, alturaDaImagem, data2D);
-		 
-		 
-	}
-	
-	public static BufferedImage ExibirImagem(int largura, int altura, int [][] matrizRGB){
-		
-		imagem = new BufferedImage(altura, largura, BufferedImage.TYPE_INT_RGB);
-		Color color;
-		
-		for (int x = 0; x < altura; x++){
-			for (int y = 0; y < largura; y++){
-				
-				int corRGB = matrizRGB[x][y];
-				color = new Color(corRGB, corRGB, corRGB);
-				imagem.setRGB(x, y, color.getRGB());			
-			}
-		}
-		
-		return imagem;
-		
-	}
-
 }
