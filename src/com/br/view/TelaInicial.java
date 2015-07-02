@@ -23,7 +23,8 @@ import com.br.processarImagem.PanelDaImagem;
 public class TelaInicial extends JFrame {
 	
 	BufferedImage imagem;
-	PanelDaImagem panelDaImagem = new PanelDaImagem();
+	PanelDaImagem panelDaImagem1 = new PanelDaImagem();
+	PanelDaImagem panelDaImagem2 = new PanelDaImagem();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -109,17 +110,49 @@ public class TelaInicial extends JFrame {
 				"Fun\u00E7\u00E3o de Distribui\u00E7\u00E3o Acumulada");
 		mnHistogramas.add(mntmFunoDeDistribuio);
 		getContentPane().setLayout(null);
+		
+		panelDaImagem1.setBounds(100, 100, 250, 250);
+		panelDaImagem1.setVisible(true);
+		getContentPane().add(panelDaImagem1);
+		
+		panelDaImagem2.setBounds(400, 100, 250, 250);
+		panelDaImagem2.setVisible(true);
+		getContentPane().add(panelDaImagem2);
 
 		JButton btnSelecionarImagem02 = new JButton("Selecionar imagem");
-		btnSelecionarImagem02.setBounds(443, 346, 121, 23);
+		btnSelecionarImagem02.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try{  
+					
+					//Instanciacao de fileChooser e alteracao do diretorio para buscar a imagem
+					final JFileChooser fileChooser = new JFileChooser();
+					fileChooser.setCurrentDirectory(new File ("src/"));
+					
+					//Verificacao do fileChooser
+					if (fileChooser.showOpenDialog(btnSelecionarImagem02) == JFileChooser.APPROVE_OPTION) {
+						
+						//Cria um file onde eh armazenada a imagem
+						File file = fileChooser.getSelectedFile();
+						
+						panelDaImagem2.colocaImagemNoPainel(file.getPath());
+									
+						repaint();
+					}
+					
+				}catch(Exception erro){  
+				        
+					JOptionPane.showMessageDialog(null, "Não foi possivel carregar a imagem.");  
+				        
+				}    
+				
+			}
+		});
+		btnSelecionarImagem02.setBounds(422, 361, 215, 23);
 		getContentPane().add(btnSelecionarImagem02);
 		
-		panelDaImagem.setBounds(100, 100, 200, 200);
-		panelDaImagem.setVisible(true);
-		getContentPane().add(panelDaImagem);
-		
 		JButton btnSelecionarImagem01 = new JButton("Selecionar imagem");
-		btnSelecionarImagem01.setBounds(155, 346, 121, 23);
+		btnSelecionarImagem01.setBounds(121, 361, 215, 23);
 		btnSelecionarImagem01.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -135,7 +168,7 @@ public class TelaInicial extends JFrame {
 						//Cria um file onde eh armazenada a imagem
 						File file = fileChooser.getSelectedFile();
 						
-						panelDaImagem.colocaImagemNoPainel(file.getPath());
+						panelDaImagem1.colocaImagemNoPainel(file.getPath());
 									
 						repaint();
 					}

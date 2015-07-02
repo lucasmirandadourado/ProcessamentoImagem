@@ -31,8 +31,7 @@ public class PanelDaImagem extends JPanel {
 	public PanelDaImagem() {
 		
 		setBorder(new LineBorder(new Color(0, 0, 0)));
-		setBounds(new Rectangle(0, 0, 600, 600));
-		setBounds(543, 57, 600, 600);
+		setBounds(new Rectangle(0, 0, 250, 250));
 				
 	}
 	
