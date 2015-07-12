@@ -25,8 +25,8 @@ public class PanelDaImagem extends JPanel {
 	public int[][] matrizImagem;
 	public int altura;
 	public int largura;
-	BufferedReader imagem;
-	BufferedImage imagemOriginal;
+	public BufferedReader imagem;
+	public BufferedImage imagemOriginal;
 	
 	public PanelDaImagem() {
 		
@@ -110,4 +110,5 @@ public class PanelDaImagem extends JPanel {
 		super.paintComponent(g);
 		g.drawImage((Image) imagemOriginal, 0, 0, null);
 	}
+	
 }

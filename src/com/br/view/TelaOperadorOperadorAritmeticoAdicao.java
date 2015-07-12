@@ -14,16 +14,18 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import com.br.algoritmos.Panel_OperadorAritmetico_Adicao;
 import com.br.processarImagem.PanelDaImagem;
 
 import javax.swing.JTextPane;
 
 public class TelaOperadorOperadorAritmeticoAdicao extends JPanel {
 
-	BufferedImage imagem;
+	//BufferedImage imagem;
 	PanelDaImagem panelDaImagem1 = new PanelDaImagem();
 	PanelDaImagem panelDaImagem2 = new PanelDaImagem();
-	PanelDaImagem panelDaImagem3 = new PanelDaImagem();
+	Panel_OperadorAritmetico_Adicao panelDaImagem3 = new Panel_OperadorAritmetico_Adicao();
+	
 	
 	/**
 	 * Create the panel.
@@ -151,6 +153,22 @@ public class TelaOperadorOperadorAritmeticoAdicao extends JPanel {
 		textPane.setBackground(new Color(153, 153, 153));
 		textPane.setBounds(22, 326, 220, 90);
 		panelOpcaoInterno.add(textPane);
+		
+		JButton botaoAdicao = new JButton("Adição");
+		botaoAdicao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				panelDaImagem3.colocaImagemNoPainel(panelDaImagem1.altura, panelDaImagem1.largura, panelDaImagem1.matrizImagem, panelDaImagem2.altura, panelDaImagem2.largura, panelDaImagem2.matrizImagem);
+				
+				
+				
+			}
+		});
+		botaoAdicao.setForeground(Color.WHITE);
+		botaoAdicao.setBackground(new Color(0, 102, 255));
+		botaoAdicao.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
+		botaoAdicao.setBounds(551, 449, 250, 23);
+		panelOpcaoInterno.add(botaoAdicao);
 		
 		
 		// FIM PANEL OPCAO INTERNA
