@@ -43,7 +43,7 @@ public class TelaOperadoresLogicosAritmeticos extends JPanel {
 		botaoAdicao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				TelaOperadorOperadorAritmeticoAdicao telaOperadorAritmeticoAdicao = new TelaOperadorOperadorAritmeticoAdicao();
+				TelaOperadorAritmeticoAdicao telaOperadorAritmeticoAdicao = new TelaOperadorAritmeticoAdicao();
 				TelaInicial.contentPane.removeAll();
 				TelaInicial.contentPane.add(telaOperadorAritmeticoAdicao);
 				TelaInicial.contentPane.validate();
@@ -58,6 +58,17 @@ public class TelaOperadoresLogicosAritmeticos extends JPanel {
 		panelOpcaoInterno.add(botaoAdicao);
 		
 		JButton botaoSubtracao = new JButton("Subtração");
+		botaoSubtracao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				TelaOperadorAritmeticoSubtracao telaOperadorAritmeticoSubtracao = new TelaOperadorAritmeticoSubtracao();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaOperadorAritmeticoSubtracao);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+				
+			}
+		});
 		botaoSubtracao.setForeground(Color.WHITE);
 		botaoSubtracao.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		botaoSubtracao.setBackground(new Color(0, 102, 255));

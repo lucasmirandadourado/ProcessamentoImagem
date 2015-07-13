@@ -19,18 +19,17 @@ import com.br.processarImagem.PanelDaImagem;
 
 import javax.swing.JTextPane;
 
-public class TelaOperadorOperadorAritmeticoAdicao extends JPanel {
+public class TelaOperadorAritmeticoAdicao extends JPanel {
 
 	//BufferedImage imagem;
 	PanelDaImagem panelDaImagem1 = new PanelDaImagem();
 	PanelDaImagem panelDaImagem2 = new PanelDaImagem();
 	Panel_OperadorAritmetico_Adicao panelDaImagem3 = new Panel_OperadorAritmetico_Adicao();
 	
-	
 	/**
 	 * Create the panel.
 	 */
-	public TelaOperadorOperadorAritmeticoAdicao() {
+	public TelaOperadorAritmeticoAdicao() {
 		
 		setSize(1024, 720);
 		setLayout(null);
@@ -62,7 +61,7 @@ public class TelaOperadorOperadorAritmeticoAdicao extends JPanel {
 		panelDaImagem2.setVisible(true);
 		panelOpcaoInterno.add(panelDaImagem2);
 		
-		panelDaImagem3.setBounds(266, 326, 250, 250);
+		panelDaImagem3.setBounds(551, 311, 250, 250);
 		panelDaImagem3.setVisible(true);
 		panelOpcaoInterno.add(panelDaImagem3);
 		
@@ -82,8 +81,7 @@ public class TelaOperadorOperadorAritmeticoAdicao extends JPanel {
 						//Cria um file onde eh armazenada a imagem
 						File file = fileChooser.getSelectedFile();
 						
-						panelDaImagem1.colocaImagemNoPainel(file.getPath());
-									
+						panelDaImagem1.colocaImagemNoPainel(file.getPath());			
 						repaint();
 					}
 					
@@ -118,16 +116,12 @@ public class TelaOperadorOperadorAritmeticoAdicao extends JPanel {
 						File file = fileChooser.getSelectedFile();
 						
 						panelDaImagem2.colocaImagemNoPainel(file.getPath());
-									
-						repaint();
+						repaint();	
 					}
 					
 				}catch(Exception erro){  
-				        
-					JOptionPane.showMessageDialog(null, "Não foi possivel carregar a imagem.");  
-				        
+					JOptionPane.showMessageDialog(null, "Não foi possivel carregar a imagem.");         
 				}    
-				
 			}
 		});
 		botaoSelecionarImagem2.setForeground(Color.WHITE);
@@ -151,23 +145,21 @@ public class TelaOperadorOperadorAritmeticoAdicao extends JPanel {
 		textPane.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		textPane.setEditable(false);
 		textPane.setBackground(new Color(153, 153, 153));
-		textPane.setBounds(22, 326, 220, 90);
+		textPane.setBounds(22, 311, 220, 90);
 		panelOpcaoInterno.add(textPane);
 		
-		JButton botaoAdicao = new JButton("Adição");
+		JButton botaoAdicao = new JButton("Processar Adição");
 		botaoAdicao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eventoDeMouse) {
 				
 				panelDaImagem3.colocaImagemNoPainel(panelDaImagem1.altura, panelDaImagem1.largura, panelDaImagem1.matrizImagem, panelDaImagem2.altura, panelDaImagem2.largura, panelDaImagem2.matrizImagem);
-				
-				
 				
 			}
 		});
 		botaoAdicao.setForeground(Color.WHITE);
 		botaoAdicao.setBackground(new Color(0, 102, 255));
 		botaoAdicao.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
-		botaoAdicao.setBounds(551, 449, 250, 23);
+		botaoAdicao.setBounds(266, 311, 250, 250);
 		panelOpcaoInterno.add(botaoAdicao);
 		
 		
