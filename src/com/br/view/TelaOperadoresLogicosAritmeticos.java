@@ -76,6 +76,15 @@ public class TelaOperadoresLogicosAritmeticos extends JPanel {
 		panelOpcaoInterno.add(botaoSubtracao);
 		
 		JButton botaoDivisao = new JButton("Divisão");
+		botaoDivisao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				TelaOperadorAritmeticoDivisao telaOperadorAritmeticoDivisao = new TelaOperadorAritmeticoDivisao();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaOperadorAritmeticoDivisao);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+			}
+		});
 		botaoDivisao.setForeground(Color.WHITE);
 		botaoDivisao.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		botaoDivisao.setBackground(new Color(0, 102, 255));
@@ -83,6 +92,17 @@ public class TelaOperadoresLogicosAritmeticos extends JPanel {
 		panelOpcaoInterno.add(botaoDivisao);
 		
 		JButton botaoMultiplicacao = new JButton("Multiplicação");
+		botaoMultiplicacao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				TelaOperadorAritmeticoMultiplicacao telaOperadorAritmeticoMultiplicacao = new TelaOperadorAritmeticoMultiplicacao();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaOperadorAritmeticoMultiplicacao);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+				
+			}
+		});
 		botaoMultiplicacao.setForeground(Color.WHITE);
 		botaoMultiplicacao.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		botaoMultiplicacao.setBackground(new Color(0, 102, 255));
