@@ -8,6 +8,8 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class PanelInicial extends JPanel {
 
@@ -19,7 +21,7 @@ public class PanelInicial extends JPanel {
 		setLayout(null);
 		setVisible(true);
 		
-		// INICIO PANEL OPCAO INTERNA
+		// INICIO PANEL OPCAO LATERAL
 		
 		JPanel panelOpcaoLateral = new JPanel();
 		panelOpcaoLateral.setBackground(SystemColor.scrollbar);
@@ -27,11 +29,14 @@ public class PanelInicial extends JPanel {
 		add(panelOpcaoLateral);
 		panelOpcaoLateral.setLayout(null);
 		
-		JLabel labelPaginaInicial = new JLabel("Página Inicial");
-		labelPaginaInicial.setBounds(10, 116, 157, 34);
-		labelPaginaInicial.setForeground(Color.BLACK);
-		labelPaginaInicial.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 14));
-		panelOpcaoLateral.add(labelPaginaInicial);
+		JButton botaoPaginaInicial = new JButton("Página Inicial");
+		botaoPaginaInicial.setHorizontalAlignment(SwingConstants.LEFT);
+		botaoPaginaInicial.setIcon(new ImageIcon(PanelInicial.class.getResource("/com/icon/home.png")));
+		botaoPaginaInicial.setBounds(0, 102, 194, 39);
+		botaoPaginaInicial.setForeground(Color.BLACK);
+		botaoPaginaInicial.setBackground(Color.GRAY);
+		botaoPaginaInicial.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
+		panelOpcaoLateral.add(botaoPaginaInicial);
 		
 		// FIM PANEL LATERAL
 		

@@ -4,9 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -21,13 +24,65 @@ public class TelaOperadoresLogicosAritmeticos extends JPanel {
 		setLayout(null);
 		setVisible(true);
 		
-		// INICIO PANEL OPCAO INTERNA
+		// INICIO PANEL OPCAO LATERAL
 		
 		JPanel panelOpcaoLateral = new JPanel();
 		panelOpcaoLateral.setBackground(SystemColor.scrollbar);
 		panelOpcaoLateral.setBounds(0, 0, 194, 720);
 		add(panelOpcaoLateral);
 		panelOpcaoLateral.setLayout(null);
+		
+		JButton botaoPaginaInicial = new JButton("Página Inicial");
+		botaoPaginaInicial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				PanelInicial panelInicial = new PanelInicial();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(panelInicial);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+				
+			}
+		});
+		botaoPaginaInicial.setHorizontalAlignment(SwingConstants.LEFT);
+		botaoPaginaInicial.setIcon(new ImageIcon(PanelInicial.class.getResource("/com/icon/home.png")));
+		botaoPaginaInicial.setBounds(0, 102, 194, 39);
+		botaoPaginaInicial.setForeground(Color.BLACK);
+		botaoPaginaInicial.setBackground(SystemColor.scrollbar);
+		botaoPaginaInicial.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
+		panelOpcaoLateral.add(botaoPaginaInicial);
+		
+		JButton botaoOperadoresAritmeticos = new JButton("Operadores Aritméticos");
+		botaoOperadoresAritmeticos.setHorizontalAlignment(SwingConstants.LEFT);
+		botaoOperadoresAritmeticos.setForeground(Color.BLACK);
+		botaoOperadoresAritmeticos.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoOperadoresAritmeticos.setBackground(Color.GRAY);
+		botaoOperadoresAritmeticos.setBounds(10, 141, 184, 39);
+		panelOpcaoLateral.add(botaoOperadoresAritmeticos);
+		
+		JButton botaoMenuFiltros = new JButton("Filtros");
+		botaoMenuFiltros.setHorizontalAlignment(SwingConstants.LEFT);
+		botaoMenuFiltros.setForeground(Color.BLACK);
+		botaoMenuFiltros.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoMenuFiltros.setBackground(SystemColor.scrollbar);
+		botaoMenuFiltros.setBounds(10, 180, 184, 39);
+		panelOpcaoLateral.add(botaoMenuFiltros);
+		
+		JButton botaoMenuOperadores = new JButton("Operadores");
+		botaoMenuOperadores.setHorizontalAlignment(SwingConstants.LEFT);
+		botaoMenuOperadores.setForeground(Color.BLACK);
+		botaoMenuOperadores.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoMenuOperadores.setBackground(SystemColor.scrollbar);
+		botaoMenuOperadores.setBounds(10, 219, 184, 39);
+		panelOpcaoLateral.add(botaoMenuOperadores);
+		
+		JButton botaoMenuHistograma = new JButton("Histogramas");
+		botaoMenuHistograma.setHorizontalAlignment(SwingConstants.LEFT);
+		botaoMenuHistograma.setForeground(Color.BLACK);
+		botaoMenuHistograma.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoMenuHistograma.setBackground(SystemColor.scrollbar);
+		botaoMenuHistograma.setBounds(10, 258, 184, 39);
+		panelOpcaoLateral.add(botaoMenuHistograma);
 		
 		// FIM PANEL LATERAL
 		
