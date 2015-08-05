@@ -1,3 +1,4 @@
+
 package com.br.view;
 
 import java.awt.Color;
@@ -5,7 +6,6 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.swing.ImageIcon;
@@ -14,12 +14,11 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
 import com.br.algoritmos.Panel_OperadorAritmetico_Adicao;
 import com.br.processarImagem.PanelDaImagem;
-
-import javax.swing.JTextPane;
 
 public class TelaOperadorAritmeticoAdicao extends JPanel {
 
@@ -166,12 +165,28 @@ public class TelaOperadorAritmeticoAdicao extends JPanel {
 		panelOpcaoLateral.add(botaoMenuOperadores);
 		
 		JButton botaoMenuHistograma = new JButton("Histograma");
+		botaoMenuHistograma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				TelaHistograma telaHistograma = new TelaHistograma();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaHistograma);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+				
+			}
+		});
 		botaoMenuHistograma.setHorizontalAlignment(SwingConstants.LEFT);
 		botaoMenuHistograma.setForeground(Color.BLACK);
 		botaoMenuHistograma.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 		botaoMenuHistograma.setBackground(SystemColor.scrollbar);
 		botaoMenuHistograma.setBounds(10, 410, 184, 39);
 		panelOpcaoLateral.add(botaoMenuHistograma);
+		
+		JLabel lblImg = new JLabel("");
+		lblImg.setIcon(new ImageIcon(TelaOperadorAritmeticoAdicao.class.getResource("/com/br/images/logo.jpg")));
+		lblImg.setBounds(0, 0, 194, 104);
+		panelOpcaoLateral.add(lblImg);
 		
 		// FIM PANEL LATERAL
 		

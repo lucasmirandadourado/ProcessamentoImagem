@@ -38,6 +38,11 @@ public class PanelInicial extends JPanel {
 		botaoPaginaInicial.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		panelOpcaoLateral.add(botaoPaginaInicial);
 		
+		JLabel lblImg = new JLabel("");
+		lblImg.setIcon(new ImageIcon(PanelInicial.class.getResource("/com/br/images/logo.jpg")));
+		lblImg.setBounds(0, 0, 194, 104);
+		panelOpcaoLateral.add(lblImg);
+		
 		// FIM PANEL LATERAL
 		
 		// INICIO PANEL OPCAO INTERNA
@@ -81,6 +86,17 @@ public class PanelInicial extends JPanel {
 		panelOpcaoInterno.add(botaoOperadores);
 		
 		JButton botaoHistogramas = new JButton("Histogramas");
+		botaoHistogramas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				TelaHistograma telaHistograma = new TelaHistograma();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaHistograma);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+				
+			}
+		});
 		botaoHistogramas.setForeground(Color.WHITE);
 		botaoHistogramas.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		botaoHistogramas.setBackground(new Color(0, 102, 255));

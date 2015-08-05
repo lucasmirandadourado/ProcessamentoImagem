@@ -1,4 +1,4 @@
-package com.br.processarImagem;
+package com.br.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -12,13 +12,9 @@ import javax.swing.JPanel;
 import java.awt.Rectangle;
 import javax.swing.border.LineBorder;
 
-/**
- * @author Bruno Clementino
- */
 
-public class PanelDaImagem extends JPanel {
+public class GraficoHistograma extends JPanel {
 
-	private String caminhoDaImagem = "";
 	private static final String COMENTARIO = "#";
 	private static final String P2 = "P2";
 	
@@ -26,9 +22,9 @@ public class PanelDaImagem extends JPanel {
 	public int altura;
 	public int largura;
 	public static BufferedReader imagem;
-	public BufferedImage imagemOriginal;
+	private static BufferedImage imagemOriginal;
 	
-	public PanelDaImagem() {
+	public GraficoHistograma() {
 		
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setBounds(new Rectangle(0, 0, 250, 250));
@@ -71,29 +67,51 @@ public class PanelDaImagem extends JPanel {
         matrizImagem = new int[altura][largura];
        
         String [] pixels;
-        int line=0;//coluna onde o pixel se localiza
+        int[] freq = new int[255];
+        
+      //coluna onde o pixel se localiza
+        int line=0, quant = 0;
         
         /*A linha onde refere-se ao valor maximo que o pixel pode ter eh ignorado*/
         linha=imagem.readLine();
         linha=imagem.readLine();
-        while(linha != null ){
-        	
+        while(linha != null ) {        	
         	pixels = linha.split(" ");
         	for(int i = 0;i<pixels.length;i++){
-        		matrizImagem[line][i] = Integer.parseInt(pixels[i]);            	
+        		matrizImagem[line][i] = Integer.parseInt(pixels[i]);
+        		freq[Integer.parseInt(pixels[i])]++;
+        		quant++;
         	}
         	line++;
         	linha=imagem.readLine();
         }
         
-        imagemOriginal = new BufferedImage(altura, largura, BufferedImage.TYPE_INT_RGB);
-        for(int i = 0; i<altura; i++){
-        	for(int j=0;j<largura;j++){
-        		imagemOriginal.setRGB(j, i, corPixel(matrizImagem[i][j]));
-        		repaint();
-        	}
-        	
-        }
+        setImagemOriginal(new BufferedImage(altura, largura, BufferedImage.TYPE_INT_RGB));
+        
+        for (int i = 0; i < altura; i++) {
+			for (int j = 0; j < largura; j++) {
+				getImagemOriginal().setRGB(i, j, Color.WHITE.getRGB());
+			}
+		}
+        
+        int maior = 0;
+        for (int i = 0; i < freq.length; i++) {
+			if (maior < freq[i]) {
+				maior = freq[i];
+			}
+		}
+        
+        
+        for (int i = 0; i < largura-1; i++) {
+        	int funcao = (100*freq[i])/maior;
+			for (int j = 0; j < funcao; j++) {
+				try {
+					getImagemOriginal().setRGB(i, altura -1 - j, Color.RED.getRGB());
+				} catch (Exception e) {
+					System.out.print("ERRO ");
+				}				
+			}
+		}
              
     }
 	
@@ -106,7 +124,21 @@ public class PanelDaImagem extends JPanel {
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
-		g.drawImage((Image) imagemOriginal, 0, 0, null);
+		g.drawImage((Image) getImagemOriginal(), 0, 0, null);
+	}
+
+	/**
+	 * @return the imagemOriginal
+	 */
+	public BufferedImage getImagemOriginal() {
+		return imagemOriginal;
+	}
+
+	/**
+	 * @param imagemOriginal the imagemOriginal to set
+	 */
+	public static void setImagemOriginal(BufferedImage imagemOriginal) {
+		GraficoHistograma.imagemOriginal = imagemOriginal;
 	}
 	
 }

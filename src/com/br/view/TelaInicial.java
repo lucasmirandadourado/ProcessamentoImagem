@@ -11,7 +11,7 @@ public class TelaInicial extends JFrame {
 	static JPanel contentPane;
 	PanelInicial panelInicial2 = new PanelInicial();
 
-	/**
+	/** 
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {

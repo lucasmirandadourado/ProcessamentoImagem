@@ -176,12 +176,28 @@ public class TelaOperadorAritmeticoSubtracao extends JPanel {
 			panelOpcaoLateral.add(botaoMenuOperadores);
 			
 			JButton botaoMenuHistograma = new JButton("Histograma");
+			botaoMenuHistograma.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+
+					TelaHistograma telaHistograma = new TelaHistograma();
+					TelaInicial.contentPane.removeAll();
+					TelaInicial.contentPane.add(telaHistograma);
+					TelaInicial.contentPane.validate();
+					TelaInicial.contentPane.repaint();
+					
+				}
+			});
 			botaoMenuHistograma.setHorizontalAlignment(SwingConstants.LEFT);
 			botaoMenuHistograma.setForeground(Color.BLACK);
 			botaoMenuHistograma.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 			botaoMenuHistograma.setBackground(SystemColor.scrollbar);
 			botaoMenuHistograma.setBounds(10, 410, 184, 39);
 			panelOpcaoLateral.add(botaoMenuHistograma);
+			
+			JLabel lblImg = new JLabel("");
+			lblImg.setIcon(new ImageIcon(TelaOperadorAritmeticoSubtracao.class.getResource("/com/br/images/logo.jpg")));
+			lblImg.setBounds(0, 0, 194, 102);
+			panelOpcaoLateral.add(lblImg);
 			
 			// FIM PANEL LATERAL
 			
