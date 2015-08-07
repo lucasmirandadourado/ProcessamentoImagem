@@ -57,9 +57,9 @@ public class PanelInicial extends JPanel {
 		botaoOperacoesLogicas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eventoDeMouse) {
 				
-				TelaOperadoresLogicosAritmeticos telaOperadoresLogicosAritmeticos = new TelaOperadoresLogicosAritmeticos();
+				TelaOperadores telaOperadores = new TelaOperadores();
 				TelaInicial.contentPane.removeAll();
-				TelaInicial.contentPane.add(telaOperadoresLogicosAritmeticos);
+				TelaInicial.contentPane.add(telaOperadores);
 				TelaInicial.contentPane.validate();
 				TelaInicial.contentPane.repaint();
 				
@@ -78,13 +78,6 @@ public class PanelInicial extends JPanel {
 		botaoFiltros.setBounds(413, 11, 393, 213);
 		panelOpcaoInterno.add(botaoFiltros);
 		
-		JButton botaoOperadores = new JButton("Operadores");
-		botaoOperadores.setForeground(Color.WHITE);
-		botaoOperadores.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
-		botaoOperadores.setBackground(new Color(0, 102, 255));
-		botaoOperadores.setBounds(10, 235, 393, 213);
-		panelOpcaoInterno.add(botaoOperadores);
-		
 		JButton botaoHistogramas = new JButton("Histogramas");
 		botaoHistogramas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -100,7 +93,7 @@ public class PanelInicial extends JPanel {
 		botaoHistogramas.setForeground(Color.WHITE);
 		botaoHistogramas.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		botaoHistogramas.setBackground(new Color(0, 102, 255));
-		botaoHistogramas.setBounds(413, 235, 393, 213);
+		botaoHistogramas.setBounds(10, 235, 393, 213);
 		panelOpcaoInterno.add(botaoHistogramas);
 		
 		// FIM PANEL OPCAO INTERNA

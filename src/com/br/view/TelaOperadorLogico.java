@@ -13,12 +13,12 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class TelaOperadoresLogicosAritmeticos extends JPanel {
+public class TelaOperadorLogico extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public TelaOperadoresLogicosAritmeticos() {
+	public TelaOperadorLogico() {
 
 		setSize(1024, 720);
 		setLayout(null);
@@ -52,33 +52,36 @@ public class TelaOperadoresLogicosAritmeticos extends JPanel {
 		botaoPaginaInicial.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		panelOpcaoLateral.add(botaoPaginaInicial);
 		
-		JButton botaoOperadoresAritmeticos = new JButton("Operadores Aritméticos");
-		botaoOperadoresAritmeticos.setHorizontalAlignment(SwingConstants.LEFT);
-		botaoOperadoresAritmeticos.setForeground(Color.BLACK);
-		botaoOperadoresAritmeticos.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
-		botaoOperadoresAritmeticos.setBackground(Color.GRAY);
-		botaoOperadoresAritmeticos.setBounds(10, 141, 184, 39);
-		panelOpcaoLateral.add(botaoOperadoresAritmeticos);
-		
 		JButton botaoMenuFiltros = new JButton("Filtros");
 		botaoMenuFiltros.setHorizontalAlignment(SwingConstants.LEFT);
 		botaoMenuFiltros.setForeground(Color.BLACK);
 		botaoMenuFiltros.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 		botaoMenuFiltros.setBackground(SystemColor.scrollbar);
-		botaoMenuFiltros.setBounds(10, 180, 184, 39);
+		botaoMenuFiltros.setBounds(10, 258, 184, 39);
 		panelOpcaoLateral.add(botaoMenuFiltros);
 		
 		JButton botaoMenuOperadores = new JButton("Operadores");
+		botaoMenuOperadores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				TelaOperadores telaOperadores = new TelaOperadores();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaOperadores);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+				
+			}
+		});
 		botaoMenuOperadores.setHorizontalAlignment(SwingConstants.LEFT);
 		botaoMenuOperadores.setForeground(Color.BLACK);
 		botaoMenuOperadores.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 		botaoMenuOperadores.setBackground(SystemColor.scrollbar);
-		botaoMenuOperadores.setBounds(10, 219, 184, 39);
+		botaoMenuOperadores.setBounds(10, 141, 184, 39);
 		panelOpcaoLateral.add(botaoMenuOperadores);
 		
 		JButton botaoMenuHistograma = new JButton("Histogramas");
 		botaoMenuHistograma.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
 
 				TelaHistograma telaHistograma = new TelaHistograma();
 				TelaInicial.contentPane.removeAll();
@@ -92,13 +95,40 @@ public class TelaOperadoresLogicosAritmeticos extends JPanel {
 		botaoMenuHistograma.setForeground(Color.BLACK);
 		botaoMenuHistograma.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 		botaoMenuHistograma.setBackground(SystemColor.scrollbar);
-		botaoMenuHistograma.setBounds(10, 258, 184, 39);
+		botaoMenuHistograma.setBounds(10, 296, 184, 39);
 		panelOpcaoLateral.add(botaoMenuHistograma);
 		
 		JLabel lblImg = new JLabel("");
-		lblImg.setIcon(new ImageIcon(TelaOperadoresLogicosAritmeticos.class.getResource("/com/br/images/logo.jpg")));
+		lblImg.setIcon(new ImageIcon(TelaOperadoresAritmeticos.class.getResource("/com/br/images/logo.jpg")));
 		lblImg.setBounds(0, 0, 194, 103);
 		panelOpcaoLateral.add(lblImg);
+		
+		JButton botaoOperadoresAritmeticos = new JButton("Aritméticos");
+		botaoOperadoresAritmeticos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				TelaOperadoresAritmeticos telaOperadoresAritmeticos = new TelaOperadoresAritmeticos();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaOperadoresAritmeticos);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+				
+			}
+		});
+		botaoOperadoresAritmeticos.setHorizontalAlignment(SwingConstants.LEFT);
+		botaoOperadoresAritmeticos.setForeground(Color.BLACK);
+		botaoOperadoresAritmeticos.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoOperadoresAritmeticos.setBackground(SystemColor.scrollbar);
+		botaoOperadoresAritmeticos.setBounds(20, 181, 174, 39);
+		panelOpcaoLateral.add(botaoOperadoresAritmeticos);
+		
+		JButton botaoOperadoresLogicos = new JButton("Lógicos");
+		botaoOperadoresLogicos.setHorizontalAlignment(SwingConstants.LEFT);
+		botaoOperadoresLogicos.setForeground(Color.BLACK);
+		botaoOperadoresLogicos.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoOperadoresLogicos.setBackground(Color.GRAY);
+		botaoOperadoresLogicos.setBounds(20, 220, 174, 39);
+		panelOpcaoLateral.add(botaoOperadoresLogicos);
 		
 		// FIM PANEL LATERAL
 		
@@ -110,75 +140,58 @@ public class TelaOperadoresLogicosAritmeticos extends JPanel {
 		add(panelOpcaoInterno);
 		panelOpcaoInterno.setLayout(null);
 		
-		JButton botaoAdicao = new JButton("Adição");
-		botaoAdicao.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				TelaOperadorAritmeticoAdicao telaOperadorAritmeticoAdicao = new TelaOperadorAritmeticoAdicao();
-				TelaInicial.contentPane.removeAll();
-				TelaInicial.contentPane.add(telaOperadorAritmeticoAdicao);
-				TelaInicial.contentPane.validate();
-				TelaInicial.contentPane.repaint();
-				
-			}
-		});
-		botaoAdicao.setForeground(Color.WHITE);
-		botaoAdicao.setBackground(new Color(0, 102, 255));
-		botaoAdicao.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
-		botaoAdicao.setBounds(10, 11, 393, 213);
-		panelOpcaoInterno.add(botaoAdicao);
-		
-		JButton botaoSubtracao = new JButton("Subtração");
-		botaoSubtracao.addActionListener(new ActionListener() {
+		JButton botaoAND = new JButton("AND");
+		botaoAND.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eventoDeMouse) {
 				
-				TelaOperadorAritmeticoSubtracao telaOperadorAritmeticoSubtracao = new TelaOperadorAritmeticoSubtracao();
+				TelaOperadorLogicoAND telaOperadoreLogicoAND = new TelaOperadorLogicoAND();
 				TelaInicial.contentPane.removeAll();
-				TelaInicial.contentPane.add(telaOperadorAritmeticoSubtracao);
+				TelaInicial.contentPane.add(telaOperadoreLogicoAND);
 				TelaInicial.contentPane.validate();
 				TelaInicial.contentPane.repaint();
 				
 			}
 		});
-		botaoSubtracao.setForeground(Color.WHITE);
-		botaoSubtracao.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
-		botaoSubtracao.setBackground(new Color(0, 102, 255));
-		botaoSubtracao.setBounds(413, 11, 393, 213);
-		panelOpcaoInterno.add(botaoSubtracao);
+		botaoAND.setForeground(Color.WHITE);
+		botaoAND.setBackground(new Color(0, 102, 255));
+		botaoAND.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
+		botaoAND.setBounds(10, 11, 393, 213);
+		panelOpcaoInterno.add(botaoAND);
 		
-		JButton botaoDivisao = new JButton("Divisão");
-		botaoDivisao.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent eventoDeMouse) {
-				TelaOperadorAritmeticoDivisao telaOperadorAritmeticoDivisao = new TelaOperadorAritmeticoDivisao();
-				TelaInicial.contentPane.removeAll();
-				TelaInicial.contentPane.add(telaOperadorAritmeticoDivisao);
-				TelaInicial.contentPane.validate();
-				TelaInicial.contentPane.repaint();
-			}
-		});
-		botaoDivisao.setForeground(Color.WHITE);
-		botaoDivisao.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
-		botaoDivisao.setBackground(new Color(0, 102, 255));
-		botaoDivisao.setBounds(10, 235, 393, 213);
-		panelOpcaoInterno.add(botaoDivisao);
-		
-		JButton botaoMultiplicacao = new JButton("Multiplicação");
-		botaoMultiplicacao.addActionListener(new ActionListener() {
+		JButton botaoOR = new JButton("OR");
+		botaoOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eventoDeMouse) {
 				
-				TelaOperadorAritmeticoMultiplicacao telaOperadorAritmeticoMultiplicacao = new TelaOperadorAritmeticoMultiplicacao();
+				TelaOperadorLogicoOR telaOperadoreLogicoOR = new TelaOperadorLogicoOR();
 				TelaInicial.contentPane.removeAll();
-				TelaInicial.contentPane.add(telaOperadorAritmeticoMultiplicacao);
+				TelaInicial.contentPane.add(telaOperadoreLogicoOR);
 				TelaInicial.contentPane.validate();
 				TelaInicial.contentPane.repaint();
 				
 			}
 		});
-		botaoMultiplicacao.setForeground(Color.WHITE);
-		botaoMultiplicacao.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
-		botaoMultiplicacao.setBackground(new Color(0, 102, 255));
-		botaoMultiplicacao.setBounds(413, 235, 393, 213);
-		panelOpcaoInterno.add(botaoMultiplicacao);
+		botaoOR.setForeground(Color.WHITE);
+		botaoOR.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
+		botaoOR.setBackground(new Color(0, 102, 255));
+		botaoOR.setBounds(413, 11, 393, 213);
+		panelOpcaoInterno.add(botaoOR);
+		
+		JButton botaoXOR = new JButton("XOR");
+		botaoXOR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				TelaOperadorLogicoXOR telaOperadoreLogicoXOR = new TelaOperadorLogicoXOR();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaOperadoreLogicoXOR);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+			}
+		});
+		botaoXOR.setForeground(Color.WHITE);
+		botaoXOR.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
+		botaoXOR.setBackground(new Color(0, 102, 255));
+		botaoXOR.setBounds(10, 235, 393, 213);
+		panelOpcaoInterno.add(botaoXOR);
 		
 		// FIM PANEL OPCAO INTERNA
 		
@@ -190,12 +203,11 @@ public class TelaOperadoresLogicosAritmeticos extends JPanel {
 		add(panelSuperior);
 		panelSuperior.setLayout(null);
 		
-		JLabel labelOperacoesLogicasAritmeticas = new JLabel("Operadores Lógicos e Aritméticos");
+		JLabel labelOperacoesLogicasAritmeticas = new JLabel("Operadores Lógicos");
 		labelOperacoesLogicasAritmeticas.setForeground(Color.WHITE);
 		labelOperacoesLogicasAritmeticas.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 24));
 		labelOperacoesLogicasAritmeticas.setBounds(10, 24, 730, 55);
 		panelSuperior.add(labelOperacoesLogicasAritmeticas);
 			
 	}
-
 }
