@@ -1,15 +1,25 @@
 package com.br.view;
 
 import javax.swing.JPanel;
+
 import java.awt.Color;
 import java.awt.SystemColor;
+
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+
+import com.br.view.filtros.Filtros;
+import com.br.view.histograma.TelaHistograma;
+import com.br.view.operadores.TelaOperadores;
 
 public class PanelInicial extends JPanel {
 
@@ -72,6 +82,17 @@ public class PanelInicial extends JPanel {
 		panelOpcaoInterno.add(botaoOperacoesLogicas);
 		
 		JButton botaoFiltros = new JButton("Filtros");
+		botaoFiltros.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Filtros filtros = new Filtros();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(filtros);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+				
+			}
+		});
 		botaoFiltros.setForeground(Color.WHITE);
 		botaoFiltros.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		botaoFiltros.setBackground(new Color(0, 102, 255));

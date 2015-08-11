@@ -1,4 +1,4 @@
-package com.br.view;
+package com.br.view.histograma;
 
 import java.awt.Color;
 import java.awt.Graphics;

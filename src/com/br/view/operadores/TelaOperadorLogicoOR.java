@@ -1,4 +1,4 @@
-package com.br.view;
+package com.br.view.operadores;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -18,19 +18,23 @@ import javax.swing.SwingConstants;
 
 import com.br.algoritmos.Panel_OperadorAritmetico_Adicao;
 import com.br.algoritmos.Panel_OperadorLogico_AND;
+import com.br.algoritmos.Panel_OperadorLogico_OR;
 import com.br.processarImagem.PanelDaImagem;
+import com.br.view.PanelInicial;
+import com.br.view.TelaInicial;
+import com.br.view.histograma.TelaHistograma;
 
-public class TelaOperadorLogicoAND extends JPanel {
+public class TelaOperadorLogicoOR extends JPanel {
 
 	//BufferedImage imagem;
 	PanelDaImagem panelDaImagem1 = new PanelDaImagem();
 	PanelDaImagem panelDaImagem2 = new PanelDaImagem();
-	Panel_OperadorLogico_AND panelDaImagem3 = new Panel_OperadorLogico_AND();
+	Panel_OperadorLogico_OR panelDaImagem3 = new Panel_OperadorLogico_OR();
 	
 	/**
 	 * Create the panel.
 	 */
-	public TelaOperadorLogicoAND() {
+	public TelaOperadorLogicoOR() {
 		
 		setSize(1024, 720);
 		setLayout(null);
@@ -84,10 +88,21 @@ public class TelaOperadorLogicoAND extends JPanel {
 		panelOpcaoLateral.add(botaoOperadoresAritmeticos);
 		
 		JButton botaoMenuAND = new JButton("AND");
+		botaoMenuAND.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				TelaOperadorLogicoAND telaOperadorLogicoAND = new TelaOperadorLogicoAND();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaOperadorLogicoAND);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+				
+			}
+		});
 		botaoMenuAND.setHorizontalAlignment(SwingConstants.LEFT);
 		botaoMenuAND.setForeground(Color.BLACK);
 		botaoMenuAND.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
-		botaoMenuAND.setBackground(Color.GRAY);
+		botaoMenuAND.setBackground(SystemColor.scrollbar);
 		botaoMenuAND.setBounds(30, 255, 164, 39);
 		panelOpcaoLateral.add(botaoMenuAND);
 		
@@ -95,18 +110,12 @@ public class TelaOperadorLogicoAND extends JPanel {
 		botaoMenuOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eventoDeMouse) {
 				
-				TelaOperadorLogicoOR telaOperadorLogicoOR = new TelaOperadorLogicoOR();
-				TelaInicial.contentPane.removeAll();
-				TelaInicial.contentPane.add(telaOperadorLogicoOR);
-				TelaInicial.contentPane.validate();
-				TelaInicial.contentPane.repaint();
-				
 			}
 		});
 		botaoMenuOR.setHorizontalAlignment(SwingConstants.LEFT);
 		botaoMenuOR.setForeground(Color.BLACK);
 		botaoMenuOR.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
-		botaoMenuOR.setBackground(SystemColor.scrollbar);
+		botaoMenuOR.setBackground(Color.GRAY);
 		botaoMenuOR.setBounds(30, 294, 164, 39);
 		panelOpcaoLateral.add(botaoMenuOR);
 		
@@ -291,12 +300,12 @@ public class TelaOperadorLogicoAND extends JPanel {
 		textPaneSelecionarImagem.setForeground(Color.WHITE);
 		textPaneSelecionarImagem.setBackground(new Color(153, 153, 153));
 		textPaneSelecionarImagem.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
-		textPaneSelecionarImagem.setText("Selecione as duas imagens a serem processadas com a função lógica AND");
+		textPaneSelecionarImagem.setText("Selecione as duas imagens a serem processadas com a função lógica OR");
 		textPaneSelecionarImagem.setBounds(22, 11, 220, 90);
 		panelOpcaoInterno.add(textPaneSelecionarImagem);
 		
 		JTextPane textPane = new JTextPane();
-		textPane.setText("Imagem processada com o algoritmo AND");
+		textPane.setText("Imagem processada com o algoritmo OR");
 		textPane.setForeground(Color.WHITE);
 		textPane.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		textPane.setEditable(false);
@@ -304,19 +313,19 @@ public class TelaOperadorLogicoAND extends JPanel {
 		textPane.setBounds(22, 311, 220, 90);
 		panelOpcaoInterno.add(textPane);
 		
-		JButton botaoAND = new JButton("Processar AND");
-		botaoAND.addActionListener(new ActionListener() {
+		JButton botaoOR = new JButton("Processar OR");
+		botaoOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eventoDeMouse) {
 				
 				panelDaImagem3.colocaImagemNoPainel(panelDaImagem1.altura, panelDaImagem1.largura, panelDaImagem1.matrizImagem, panelDaImagem2.altura, panelDaImagem2.largura, panelDaImagem2.matrizImagem);
 				
 			}
 		});
-		botaoAND.setForeground(Color.WHITE);
-		botaoAND.setBackground(new Color(0, 102, 255));
-		botaoAND.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
-		botaoAND.setBounds(266, 311, 250, 250);
-		panelOpcaoInterno.add(botaoAND);
+		botaoOR.setForeground(Color.WHITE);
+		botaoOR.setBackground(new Color(0, 102, 255));
+		botaoOR.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
+		botaoOR.setBounds(266, 311, 250, 250);
+		panelOpcaoInterno.add(botaoOR);
 		
 		
 		// FIM PANEL OPCAO INTERNA
@@ -329,11 +338,11 @@ public class TelaOperadorLogicoAND extends JPanel {
 		add(panelSuperior);
 		panelSuperior.setLayout(null);
 		
-		JLabel labelOperacoesLogicasAND = new JLabel("Operadores Lógicos   >>   AND");
-		labelOperacoesLogicasAND.setForeground(Color.WHITE);
-		labelOperacoesLogicasAND.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 24));
-		labelOperacoesLogicasAND.setBounds(10, 24, 730, 55);
-		panelSuperior.add(labelOperacoesLogicasAND);
+		JLabel labelOperacoesLogicasOR = new JLabel("Operadores Lógicos   >>   OR");
+		labelOperacoesLogicasOR.setForeground(Color.WHITE);
+		labelOperacoesLogicasOR.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 24));
+		labelOperacoesLogicasOR.setBounds(10, 24, 730, 55);
+		panelSuperior.add(labelOperacoesLogicasOR);
 
 	}
 }

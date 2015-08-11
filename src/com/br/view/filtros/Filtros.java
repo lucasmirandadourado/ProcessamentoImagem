@@ -1,4 +1,4 @@
-package com.br.view;
+package com.br.view.filtros;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -23,16 +23,19 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import com.br.processarImagem.PanelDaImagem;
+import com.br.view.PanelInicial;
+import com.br.view.TelaInicial;
+import com.br.view.histograma.TelaHistograma;
 
 import javax.swing.border.LineBorder;
 
-public class TelaHistograma extends JPanel {
+public class Filtros extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
 	BufferedImage imagemOriginal;
 
-	public TelaHistograma() {
+	public Filtros(){
 		setSize(1024, 720);
 		setLayout(null);
 		setVisible(true);
@@ -80,60 +83,66 @@ public class TelaHistograma extends JPanel {
 		panelSuperior.setLayout(null);
 
 		// Corpo do sistema
-		JLabel labelOperacoesLogicasAritmeticas = new JLabel("Histograma");
-		labelOperacoesLogicasAritmeticas.setForeground(Color.WHITE);
-		labelOperacoesLogicasAritmeticas.setFont(new Font("Segoe UI Semilight",
+		JLabel lbl_filtros = new JLabel("Filtros");
+		lbl_filtros.setForeground(Color.WHITE);
+		lbl_filtros.setFont(new Font("Segoe UI Semilight",
 				Font.PLAIN, 24));
-		labelOperacoesLogicasAritmeticas.setBounds(10, 24, 730, 55);
-		panelSuperior.add(labelOperacoesLogicasAritmeticas);
-
-		JLabel lblEscolhaAImagem = new JLabel(
-				"Escolha a imagem para ver o histograma");
-		lblEscolhaAImagem.setFont(new Font("Segoe UI Light", Font.BOLD, 16));
-		lblEscolhaAImagem.setBounds(221, 124, 763, 23);
-		add(lblEscolhaAImagem);
-
-		PanelDaImagem panelDaImagem1 = new PanelDaImagem();
-		panelDaImagem1.setLocation(221, 158);
-		add(panelDaImagem1);
-
-		JButton btnEscolherImagem = new JButton("Escolher imagem");
-		btnEscolherImagem.addActionListener(new ActionListener() {
+		lbl_filtros.setBounds(10, 24, 730, 55);
+		panelSuperior.add(lbl_filtros);
+		
+		JButton btnMdia = new JButton("M\u00E9dia");
+		btnMdia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-
-					// Instanciacao de fileChooser e alteracao do diretorio para
-					// buscar a imagem
-					final JFileChooser fileChooser = new JFileChooser();
-					fileChooser.setCurrentDirectory(new File("src/imagens/"));
-
-					// Verificacao do fileChooser
-					if (fileChooser.showOpenDialog(btnEscolherImagem) == JFileChooser.APPROVE_OPTION) {
-
-						// Cria um file onde eh armazenada a imagem
-						File file = fileChooser.getSelectedFile();
-
-						panelDaImagem1.colocaImagemNoPainel(file.getPath());
-						repaint();
-
-						GraficoHistograma gh = new GraficoHistograma();
-						gh.colocaImagemNoPainel(file.getPath());
-						add(gh);
-						gh.setLocation(550, 158);
-
-					}
-
-				} catch (Exception erro) {
-
-					JOptionPane.showMessageDialog(null,
-							"Não foi possivel carregar a imagem.");
-				}
+				
 			}
 		});
-		btnEscolherImagem.setBackground(new Color(0, 102, 255));
-		btnEscolherImagem.setFont(new Font("Segoe UI Light", Font.BOLD, 14));
-		btnEscolherImagem.setBounds(221, 412, 250, 35);
-		add(btnEscolherImagem);
+		btnMdia.setForeground(Color.WHITE);
+		btnMdia.setBackground(new Color(0, 102, 255));
+		btnMdia.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		btnMdia.setBounds(224, 137, 200, 82);
+		add(btnMdia);
+		
+		JButton btnSobel = new JButton("Sobel");
+		btnSobel.setForeground(SystemColor.text);
+		btnSobel.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		btnSobel.setBackground(new Color(0, 102, 255));
+		btnSobel.setBounds(224, 377, 200, 82);
+		add(btnSobel);
+		
+		JButton btnMedina = new JButton("Medina");
+		btnMedina.setForeground(SystemColor.text);
+		btnMedina.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		btnMedina.setBackground(new Color(0, 102, 255));
+		btnMedina.setBounds(470, 137, 200, 82);
+		add(btnMedina);
+		
+		JButton btnPassaAlta = new JButton("Passa alta");
+		btnPassaAlta.setForeground(SystemColor.text);
+		btnPassaAlta.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		btnPassaAlta.setBackground(new Color(0, 102, 255));
+		btnPassaAlta.setBounds(728, 137, 200, 82);
+		add(btnPassaAlta);
+		
+		JButton btnPrewitt = new JButton("Prewitt");
+		btnPrewitt.setForeground(SystemColor.text);
+		btnPrewitt.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		btnPrewitt.setBackground(new Color(0, 102, 255));
+		btnPrewitt.setBounds(224, 250, 200, 82);
+		add(btnPrewitt);
+		
+		JButton btnRoberts = new JButton("Roberts");
+		btnRoberts.setForeground(SystemColor.text);
+		btnRoberts.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		btnRoberts.setBackground(new Color(0, 102, 255));
+		btnRoberts.setBounds(470, 250, 200, 82);
+		add(btnRoberts);
+		
+		JButton btnRobertsCruzado = new JButton("Roberts cruzado");
+		btnRobertsCruzado.setForeground(SystemColor.text);
+		btnRobertsCruzado.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		btnRobertsCruzado.setBackground(new Color(0, 102, 255));
+		btnRobertsCruzado.setBounds(728, 250, 200, 82);
+		add(btnRobertsCruzado);
 
 	}
 

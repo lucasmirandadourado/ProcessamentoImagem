@@ -1,4 +1,4 @@
-package com.br.view;
+package com.br.view.operadores;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,6 +9,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import com.br.view.PanelInicial;
+import com.br.view.TelaInicial;
+import com.br.view.histograma.TelaHistograma;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

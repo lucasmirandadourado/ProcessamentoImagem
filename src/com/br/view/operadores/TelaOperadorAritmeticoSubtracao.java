@@ -1,4 +1,4 @@
-package com.br.view;
+package com.br.view.operadores;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -19,6 +19,9 @@ import javax.swing.SwingConstants;
 import com.br.algoritmos.Panel_OperadorAritmetico_Adicao;
 import com.br.algoritmos.Panel_OperadorAritmetico_Subtracao;
 import com.br.processarImagem.PanelDaImagem;
+import com.br.view.PanelInicial;
+import com.br.view.TelaInicial;
+import com.br.view.histograma.TelaHistograma;
 
 public class TelaOperadorAritmeticoSubtracao extends JPanel {
 	

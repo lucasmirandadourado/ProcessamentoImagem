@@ -4,11 +4,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import java.awt.Dimension;
 
 
 public class TelaInicial extends JFrame {
 
-	static JPanel contentPane;
+	public static JPanel contentPane;
 	PanelInicial panelInicial2 = new PanelInicial();
 
 	/** 
@@ -20,6 +21,7 @@ public class TelaInicial extends JFrame {
 				try {
 					TelaInicial frame = new TelaInicial();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -31,6 +33,8 @@ public class TelaInicial extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaInicial() {
+		setMinimumSize(new Dimension(1024, 720));
+		setTitle("Projeto de processamento de imagem");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 720);
