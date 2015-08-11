@@ -93,7 +93,11 @@ public class Filtros extends JPanel {
 		JButton btnMdia = new JButton("M\u00E9dia");
 		btnMdia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Media media = new Media();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(media);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
 			}
 		});
 		btnMdia.setForeground(Color.WHITE);
@@ -103,13 +107,22 @@ public class Filtros extends JPanel {
 		add(btnMdia);
 		
 		JButton btnSobel = new JButton("Sobel");
+		btnSobel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Sobel sobel = new Sobel();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(sobel);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+			}
+		});
 		btnSobel.setForeground(SystemColor.text);
 		btnSobel.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
 		btnSobel.setBackground(new Color(0, 102, 255));
 		btnSobel.setBounds(224, 377, 200, 82);
 		add(btnSobel);
 		
-		JButton btnMedina = new JButton("Medina");
+		JButton btnMedina = new JButton("Mediana");
 		btnMedina.setForeground(SystemColor.text);
 		btnMedina.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
 		btnMedina.setBackground(new Color(0, 102, 255));
@@ -117,6 +130,15 @@ public class Filtros extends JPanel {
 		add(btnMedina);
 		
 		JButton btnPassaAlta = new JButton("Passa alta");
+		btnPassaAlta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PassaAlta passa = new PassaAlta();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(passa);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+			}
+		});
 		btnPassaAlta.setForeground(SystemColor.text);
 		btnPassaAlta.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
 		btnPassaAlta.setBackground(new Color(0, 102, 255));
@@ -131,6 +153,15 @@ public class Filtros extends JPanel {
 		add(btnPrewitt);
 		
 		JButton btnRoberts = new JButton("Roberts");
+		btnRoberts.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Roberts	roberts = new Roberts();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(roberts);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+			}
+		});
 		btnRoberts.setForeground(SystemColor.text);
 		btnRoberts.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
 		btnRoberts.setBackground(new Color(0, 102, 255));
