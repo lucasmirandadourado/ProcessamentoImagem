@@ -123,6 +123,17 @@ public class Filtros extends JPanel {
 		add(btnSobel);
 		
 		JButton btnMedina = new JButton("Mediana");
+		btnMedina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				TelaFiltroMediana telaFiltroMediana = new TelaFiltroMediana();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaFiltroMediana);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+				
+			}
+		});
 		btnMedina.setForeground(SystemColor.text);
 		btnMedina.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
 		btnMedina.setBackground(new Color(0, 102, 255));
