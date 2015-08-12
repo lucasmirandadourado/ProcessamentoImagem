@@ -90,21 +90,23 @@ public class Filtros extends JPanel {
 		lbl_filtros.setBounds(10, 24, 730, 55);
 		panelSuperior.add(lbl_filtros);
 		
-		JButton btnMdia = new JButton("M\u00E9dia");
-		btnMdia.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Media media = new Media();
+		JButton botaoMedia = new JButton("Média");
+		botaoMedia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				TelaFiltroMedia telaFiltroMedia = new TelaFiltroMedia();
 				TelaInicial.contentPane.removeAll();
-				TelaInicial.contentPane.add(media);
+				TelaInicial.contentPane.add(telaFiltroMedia);
 				TelaInicial.contentPane.validate();
 				TelaInicial.contentPane.repaint();
+				
 			}
 		});
-		btnMdia.setForeground(Color.WHITE);
-		btnMdia.setBackground(new Color(0, 102, 255));
-		btnMdia.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
-		btnMdia.setBounds(224, 137, 200, 82);
-		add(btnMdia);
+		botaoMedia.setForeground(Color.WHITE);
+		botaoMedia.setBackground(new Color(0, 102, 255));
+		botaoMedia.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		botaoMedia.setBounds(224, 137, 200, 82);
+		add(botaoMedia);
 		
 		JButton btnSobel = new JButton("Sobel");
 		btnSobel.addActionListener(new ActionListener() {
