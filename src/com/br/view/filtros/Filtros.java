@@ -83,12 +83,12 @@ public class Filtros extends JPanel {
 		panelSuperior.setLayout(null);
 
 		// Corpo do sistema
-		JLabel lbl_filtros = new JLabel("Filtros");
-		lbl_filtros.setForeground(Color.WHITE);
-		lbl_filtros.setFont(new Font("Segoe UI Semilight",
+		JLabel labelFiltros = new JLabel("Filtros");
+		labelFiltros.setForeground(Color.WHITE);
+		labelFiltros.setFont(new Font("Segoe UI Semilight",
 				Font.PLAIN, 24));
-		lbl_filtros.setBounds(10, 24, 730, 55);
-		panelSuperior.add(lbl_filtros);
+		labelFiltros.setBounds(10, 24, 730, 55);
+		panelSuperior.add(labelFiltros);
 		
 		JButton botaoMedia = new JButton("Média");
 		botaoMedia.addActionListener(new ActionListener() {
@@ -108,9 +108,10 @@ public class Filtros extends JPanel {
 		botaoMedia.setBounds(224, 137, 200, 82);
 		add(botaoMedia);
 		
-		JButton btnSobel = new JButton("Sobel");
-		btnSobel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JButton botaoSobel = new JButton("Sobel");
+		botaoSobel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
 				Sobel sobel = new Sobel();
 				TelaInicial.contentPane.removeAll();
 				TelaInicial.contentPane.add(sobel);
@@ -118,14 +119,14 @@ public class Filtros extends JPanel {
 				TelaInicial.contentPane.repaint();
 			}
 		});
-		btnSobel.setForeground(SystemColor.text);
-		btnSobel.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
-		btnSobel.setBackground(new Color(0, 102, 255));
-		btnSobel.setBounds(224, 377, 200, 82);
-		add(btnSobel);
+		botaoSobel.setForeground(SystemColor.text);
+		botaoSobel.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		botaoSobel.setBackground(new Color(0, 102, 255));
+		botaoSobel.setBounds(224, 377, 200, 82);
+		add(botaoSobel);
 		
-		JButton btnMedina = new JButton("Mediana");
-		btnMedina.addActionListener(new ActionListener() {
+		JButton botaoMediana = new JButton("Mediana");
+		botaoMediana.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eventoDeMouse) {
 				
 				TelaFiltroMediana telaFiltroMediana = new TelaFiltroMediana();
@@ -136,37 +137,38 @@ public class Filtros extends JPanel {
 				
 			}
 		});
-		btnMedina.setForeground(SystemColor.text);
-		btnMedina.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
-		btnMedina.setBackground(new Color(0, 102, 255));
-		btnMedina.setBounds(470, 137, 200, 82);
-		add(btnMedina);
+		botaoMediana.setForeground(SystemColor.text);
+		botaoMediana.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		botaoMediana.setBackground(new Color(0, 102, 255));
+		botaoMediana.setBounds(470, 137, 200, 82);
+		add(botaoMediana);
 		
-		JButton btnPassaAlta = new JButton("Passa alta");
-		btnPassaAlta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PassaAlta passa = new PassaAlta();
+		JButton botaoPassaAlta = new JButton("Passa alta");
+		botaoPassaAlta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				TelaFiltroPassaAlta passa = new TelaFiltroPassaAlta();
 				TelaInicial.contentPane.removeAll();
 				TelaInicial.contentPane.add(passa);
 				TelaInicial.contentPane.validate();
 				TelaInicial.contentPane.repaint();
 			}
 		});
-		btnPassaAlta.setForeground(SystemColor.text);
-		btnPassaAlta.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
-		btnPassaAlta.setBackground(new Color(0, 102, 255));
-		btnPassaAlta.setBounds(728, 137, 200, 82);
-		add(btnPassaAlta);
+		botaoPassaAlta.setForeground(SystemColor.text);
+		botaoPassaAlta.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		botaoPassaAlta.setBackground(new Color(0, 102, 255));
+		botaoPassaAlta.setBounds(728, 137, 200, 82);
+		add(botaoPassaAlta);
 		
-		JButton btnPrewitt = new JButton("Prewitt");
-		btnPrewitt.setForeground(SystemColor.text);
-		btnPrewitt.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
-		btnPrewitt.setBackground(new Color(0, 102, 255));
-		btnPrewitt.setBounds(224, 250, 200, 82);
-		add(btnPrewitt);
+		JButton botaoPrewitt = new JButton("Prewitt");
+		botaoPrewitt.setForeground(SystemColor.text);
+		botaoPrewitt.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		botaoPrewitt.setBackground(new Color(0, 102, 255));
+		botaoPrewitt.setBounds(224, 250, 200, 82);
+		add(botaoPrewitt);
 		
-		JButton btnRoberts = new JButton("Roberts");
-		btnRoberts.addActionListener(new ActionListener() {
+		JButton botaoRoberts = new JButton("Roberts");
+		botaoRoberts.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Roberts	roberts = new Roberts();
 				TelaInicial.contentPane.removeAll();
@@ -175,18 +177,18 @@ public class Filtros extends JPanel {
 				TelaInicial.contentPane.repaint();
 			}
 		});
-		btnRoberts.setForeground(SystemColor.text);
-		btnRoberts.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
-		btnRoberts.setBackground(new Color(0, 102, 255));
-		btnRoberts.setBounds(470, 250, 200, 82);
-		add(btnRoberts);
+		botaoRoberts.setForeground(SystemColor.text);
+		botaoRoberts.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		botaoRoberts.setBackground(new Color(0, 102, 255));
+		botaoRoberts.setBounds(470, 250, 200, 82);
+		add(botaoRoberts);
 		
-		JButton btnRobertsCruzado = new JButton("Roberts cruzado");
-		btnRobertsCruzado.setForeground(SystemColor.text);
-		btnRobertsCruzado.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
-		btnRobertsCruzado.setBackground(new Color(0, 102, 255));
-		btnRobertsCruzado.setBounds(728, 250, 200, 82);
-		add(btnRobertsCruzado);
+		JButton botaoRobertsCruzado = new JButton("Roberts cruzado");
+		botaoRobertsCruzado.setForeground(SystemColor.text);
+		botaoRobertsCruzado.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		botaoRobertsCruzado.setBackground(new Color(0, 102, 255));
+		botaoRobertsCruzado.setBounds(728, 250, 200, 82);
+		add(botaoRobertsCruzado);
 
 	}
 
