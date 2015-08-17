@@ -161,6 +161,17 @@ public class Filtros extends JPanel {
 		add(botaoPassaAlta);
 		
 		JButton botaoPrewitt = new JButton("Prewitt");
+		botaoPrewitt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				TelaFiltroPrewitt telaFiltroPrewitt = new TelaFiltroPrewitt();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaFiltroPrewitt);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+				
+			}
+		});
 		botaoPrewitt.setForeground(SystemColor.text);
 		botaoPrewitt.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
 		botaoPrewitt.setBackground(new Color(0, 102, 255));
