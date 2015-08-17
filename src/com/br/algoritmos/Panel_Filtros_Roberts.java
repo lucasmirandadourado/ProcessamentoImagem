@@ -11,14 +11,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-public class Panel_Filtros_Prewitt extends JPanel {
+public class Panel_Filtros_Roberts extends JPanel {
 
 	public BufferedImage imagemMediana;
 	
 	/**
 	 * Create the panel.
 	 */
-	public Panel_Filtros_Prewitt() {
+	public Panel_Filtros_Roberts() {
 		
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setBounds(new Rectangle(0, 0, 250, 250));
@@ -51,40 +51,16 @@ public class Panel_Filtros_Prewitt extends JPanel {
         		int aproximacaoX = 0;
         		int aproximacaoY = 0;
 
-        		if (((i - 1) >= 0) && ((j + 1) < altura)) {
-        			aproximacaoX += matrizDaImagem1[i - 1][j + 1];
-        			aproximacaoY -= matrizDaImagem1[i - 1][j + 1];
+        		if ((j + 1) < altura){
+        			aproximacaoY = matrizDaImagem1[i][j] - matrizDaImagem1[i][j + 1];
+        		}else{
+        			aproximacaoY = matrizDaImagem1[i][j];
         		}
         		
-        		if ((j + 1) < altura) {
-        			aproximacaoX += matrizDaImagem1[i][j + 1];
-        		}
-        		
-        		if (((i + 1) < largura) && ((j + 1) < altura)) {
-        			aproximacaoX += matrizDaImagem1[i + 1][j + 1];
-        			aproximacaoY += matrizDaImagem1[i + 1][j + 1];
-        		}
-        		
-        		if (((i - 1) >= 0) && ((j - 1) >= 0)) {
-        			aproximacaoX -= matrizDaImagem1[i - 1][j - 1];
-        			aproximacaoY -= matrizDaImagem1[i - 1][j - 1];
-        		}
-        		
-        		if ((j - 1) >= 0) {
-        			aproximacaoX -= matrizDaImagem1[i][j - 1];
-        		}
-        		
-        		if (((i + 1) < largura) && ((j - 1) >= 0)){
-        			aproximacaoX -= matrizDaImagem1[i + 1][j - 1];
-        			aproximacaoY += matrizDaImagem1[i + 1][j - 1];
-        		}
-        		
-        		if ((i + 1) < largura){
-        			aproximacaoY += matrizDaImagem1[i + 1][j];
-        		}
-        		
-        		if ((i - 1) >= 0){
-        			aproximacaoY -= matrizDaImagem1[i - 1][j];
+        		if ((i + 1) < altura){
+        			aproximacaoX = matrizDaImagem1[i][j] - matrizDaImagem1[i + 1][j];
+        		}else {
+        			aproximacaoX = matrizDaImagem1[i][j];
         		}
 
         		int mag = Math.abs(aproximacaoX) + Math.abs(aproximacaoY);

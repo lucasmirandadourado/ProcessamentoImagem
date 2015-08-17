@@ -86,7 +86,6 @@ public class Panel_Filtros_PassaAlta extends JPanel {
         			matrizImagem[i][j] = 0;
         		}
         		
-        		System.out.println(matrizImagem[i][j]);
         		imagemMediana.setRGB(j, i, corPixel(matrizImagem[i][j]));
         		repaint();
         	}

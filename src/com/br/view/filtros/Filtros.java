@@ -181,7 +181,7 @@ public class Filtros extends JPanel {
 		JButton botaoRoberts = new JButton("Roberts");
 		botaoRoberts.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Roberts	roberts = new Roberts();
+				TelaFiltroRoberts	roberts = new TelaFiltroRoberts();
 				TelaInicial.contentPane.removeAll();
 				TelaInicial.contentPane.add(roberts);
 				TelaInicial.contentPane.validate();
