@@ -112,7 +112,7 @@ public class Filtros extends JPanel {
 		botaoSobel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eventoDeMouse) {
 				
-				Sobel sobel = new Sobel();
+				TelaFiltroSobel sobel = new TelaFiltroSobel();
 				TelaInicial.contentPane.removeAll();
 				TelaInicial.contentPane.add(sobel);
 				TelaInicial.contentPane.validate();
