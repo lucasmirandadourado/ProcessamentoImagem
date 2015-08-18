@@ -12,7 +12,7 @@ import javax.swing.border.LineBorder;
 
 public class Panel_Filtros_PassaAlta extends JPanel {
 
-	public BufferedImage imagemMediana;
+	public BufferedImage imagemPassaAlta;
 	
 	/**
 	 * Create the panel.
@@ -42,7 +42,7 @@ public class Panel_Filtros_PassaAlta extends JPanel {
         int largura = larguraDaImagem1;
         
         int matrizImagem[][] = new int[altura][largura];       
-        imagemMediana = new BufferedImage(altura, largura, BufferedImage.TYPE_INT_RGB);
+        imagemPassaAlta = new BufferedImage(altura, largura, BufferedImage.TYPE_INT_RGB);
         
         for(int i = 0; i<altura; i++){
         	for(int j=0;j<largura;j++){
@@ -86,7 +86,7 @@ public class Panel_Filtros_PassaAlta extends JPanel {
         			matrizImagem[i][j] = 0;
         		}
         		
-        		imagemMediana.setRGB(j, i, corPixel(matrizImagem[i][j]));
+        		imagemPassaAlta.setRGB(j, i, corPixel(matrizImagem[i][j]));
         		repaint();
         	}
         } 
@@ -101,7 +101,7 @@ public class Panel_Filtros_PassaAlta extends JPanel {
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
-		g.drawImage(imagemMediana, 0, 0, null);
+		g.drawImage(imagemPassaAlta, 0, 0, null);
 	}
 
 }

@@ -195,6 +195,17 @@ public class Filtros extends JPanel {
 		add(botaoRoberts);
 		
 		JButton botaoRobertsCruzado = new JButton("Roberts cruzado");
+		botaoRobertsCruzado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				TelaFiltroRobertsCruzado robertsCruzado = new TelaFiltroRobertsCruzado();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(robertsCruzado);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+				
+			}
+		});
 		botaoRobertsCruzado.setForeground(SystemColor.text);
 		botaoRobertsCruzado.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
 		botaoRobertsCruzado.setBackground(new Color(0, 102, 255));

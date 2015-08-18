@@ -12,7 +12,7 @@ import javax.swing.border.LineBorder;
 
 public class Panel_Filtros_Media extends JPanel {
 
-	public BufferedImage imagemMediana;
+	public BufferedImage imagemMedia;
 	
 	/**
 	 * Create the panel.
@@ -43,7 +43,7 @@ public class Panel_Filtros_Media extends JPanel {
         int CoeficienteDeNormalizacao = 0;
         
         int matrizImagem[][] = new int[altura][largura];       
-        imagemMediana = new BufferedImage(altura, largura, BufferedImage.TYPE_INT_RGB);
+        imagemMedia = new BufferedImage(altura, largura, BufferedImage.TYPE_INT_RGB);
         
         for(int i = 0; i<altura; i++){
         	for(int j=0;j<largura;j++){
@@ -90,7 +90,7 @@ public class Panel_Filtros_Media extends JPanel {
         			matrizImagem[i][j] = 255;
         		}
         		
-        		imagemMediana.setRGB(j, i, corPixel(matrizImagem[i][j]));
+        		imagemMedia.setRGB(j, i, corPixel(matrizImagem[i][j]));
         		repaint();
         	}
         } 
@@ -105,7 +105,7 @@ public class Panel_Filtros_Media extends JPanel {
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
-		g.drawImage(imagemMediana, 0, 0, null);
+		g.drawImage(imagemMedia, 0, 0, null);
 	}
 
 }

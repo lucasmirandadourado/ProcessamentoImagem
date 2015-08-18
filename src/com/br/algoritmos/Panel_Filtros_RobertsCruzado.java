@@ -11,14 +11,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-public class Panel_Filtros_Roberts extends JPanel {
+public class Panel_Filtros_RobertsCruzado extends JPanel {
 
-	public BufferedImage imagemRoberts;
+	public BufferedImage imagemRobertsCruzado;
 	
 	/**
 	 * Create the panel.
 	 */
-	public Panel_Filtros_Roberts() {
+	public Panel_Filtros_RobertsCruzado() {
 		
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setBounds(new Rectangle(0, 0, 250, 250));
@@ -43,7 +43,7 @@ public class Panel_Filtros_Roberts extends JPanel {
         int largura = larguraDaImagem1;
         
         int matrizImagem[][] = new int[altura][largura];       
-        imagemRoberts = new BufferedImage(altura, largura, BufferedImage.TYPE_INT_RGB);
+        imagemRobertsCruzado = new BufferedImage(altura, largura, BufferedImage.TYPE_INT_RGB);
         
         for(int i = 0; i<altura; i++){
         	for(int j=0;j<largura;j++){
@@ -51,19 +51,20 @@ public class Panel_Filtros_Roberts extends JPanel {
         		int aproximacaoX = 0;
         		int aproximacaoY = 0;
 
-        		if ((j + 1) < altura){
-        			aproximacaoY = matrizDaImagem1[i][j] - matrizDaImagem1[i][j + 1];
-        		}else{
+        		if (((j + 1) < altura) && ((i + 1) < altura)) {
+        			aproximacaoY = matrizDaImagem1[i][j] - matrizDaImagem1[i + 1][j + 1];
+        		} else {
         			aproximacaoY = matrizDaImagem1[i][j];
         		}
         		
-        		if ((i + 1) < altura){
-        			aproximacaoX = matrizDaImagem1[i][j] - matrizDaImagem1[i + 1][j];
-        		}else {
-        			aproximacaoX = matrizDaImagem1[i][j];
+        		if ((i + 1) < largura){
+        			aproximacaoX += matrizDaImagem1[i + 1][j];
         		}
-
-        		int mag = Math.abs(aproximacaoX) + Math.abs(aproximacaoY);
+        		if ((j + 1) < altura){
+        			aproximacaoX += - matrizDaImagem1[i][j + 1];
+        		}
+        		
+        		int mag = Math.abs(aproximacaoY) + Math.abs(aproximacaoX);
         		
         		matrizImagem[i][j] = mag;
         		
@@ -77,7 +78,7 @@ public class Panel_Filtros_Roberts extends JPanel {
         			matrizImagem[i][j] = 0;
         		}
         		
-        		imagemRoberts.setRGB(j, i, corPixel(matrizImagem[i][j]));
+        		imagemRobertsCruzado.setRGB(j, i, corPixel(matrizImagem[i][j]));
         		repaint();
         	}
         } 
@@ -92,7 +93,7 @@ public class Panel_Filtros_Roberts extends JPanel {
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
-		g.drawImage(imagemRoberts, 0, 0, null);
+		g.drawImage(imagemRobertsCruzado, 0, 0, null);
 	}
 
 }
