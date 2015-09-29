@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
 import com.br.view.filtros.Filtros;
+import com.br.view.gatoArnold.TelaGatoDeArnold;
 import com.br.view.histograma.TelaHistograma;
 import com.br.view.operadores.TelaOperadores;
 
@@ -116,6 +117,23 @@ public class PanelInicial extends JPanel {
 		botaoHistogramas.setBackground(new Color(0, 102, 255));
 		botaoHistogramas.setBounds(10, 235, 393, 213);
 		panelOpcaoInterno.add(botaoHistogramas);
+		
+		JButton botaoGatoDeArnold = new JButton("Gato de Arnold");
+		botaoGatoDeArnold.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				TelaGatoDeArnold telaGatoDeArnold = new TelaGatoDeArnold();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaGatoDeArnold);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+			}
+		});
+		botaoGatoDeArnold.setForeground(Color.WHITE);
+		botaoGatoDeArnold.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
+		botaoGatoDeArnold.setBackground(new Color(0, 102, 255));
+		botaoGatoDeArnold.setBounds(413, 235, 393, 213);
+		panelOpcaoInterno.add(botaoGatoDeArnold);
 		
 		// FIM PANEL OPCAO INTERNA
 		
