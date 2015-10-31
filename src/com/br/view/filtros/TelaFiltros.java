@@ -29,13 +29,13 @@ import com.br.view.histograma.TelaHistograma;
 
 import javax.swing.border.LineBorder;
 
-public class Filtros extends JPanel {
+public class TelaFiltros extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
 	BufferedImage imagemOriginal;
 
-	public Filtros(){
+	public TelaFiltros(){
 		setSize(1024, 720);
 		setLayout(null);
 		setVisible(true);

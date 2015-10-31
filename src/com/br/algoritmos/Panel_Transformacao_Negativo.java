@@ -1,4 +1,4 @@
-package com.br.view.gatoArnold;
+package com.br.algoritmos;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -10,16 +10,15 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
-import javax.swing.plaf.SliderUI;
 
-public class PanelGatoDeArnold extends JPanel {
+public class Panel_Transformacao_Negativo extends JPanel {
 
-	public BufferedImage imagemGatoDeArnold;
-
+	public BufferedImage imagemNegativo;
+	
 	/**
 	 * Create the panel.
 	 */
-	public PanelGatoDeArnold() {
+	public Panel_Transformacao_Negativo() {
 		
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setBounds(new Rectangle(0, 0, 250, 250));
@@ -43,28 +42,29 @@ public class PanelGatoDeArnold extends JPanel {
         int altura = alturaDaImagem1;
         int largura = larguraDaImagem1;
         
-        imagemGatoDeArnold = new BufferedImage(altura, largura, BufferedImage.TYPE_INT_RGB);
-               
-        int matrizInput [][] = matrizDaImagem1;
-        int matrizResultado [][] = new int [altura][largura];
+        int matrizImagem[][] = new int[altura][largura];       
+        imagemNegativo = new BufferedImage(altura, largura, BufferedImage.TYPE_INT_RGB);
         
-        for (int i = 0; i < matrizDaImagem1.length; i++) {
-			for (int j = 0; j < matrizDaImagem1.length; j++) {
-				//matrizResultado[i][j] = matrizDaImagem1[]
-			}
-		}
+        for(int i = 0; i<altura; i++){
+        	for(int j=0;j<largura;j++){
+        		
+        		matrizImagem[i][j] = 255 - matrizDaImagem1[i][j];
+        		
+        		//verificacao do valor do pixel caso o mesmo ultrapasse o valor de 255 (valor maximo)
+        		if(matrizImagem[i][j] > 255){
+        			matrizImagem[i][j] = 255;
+        		}
+        		
+        		//verificacao do valor do pixel caso o mesmo ultrapasse o valor de 0 (valor minimo)
+        		if(matrizImagem[i][j] < 0){
+        			matrizImagem[i][j] = 0;
+        		}
+        		
+        		imagemNegativo.setRGB(j, i, corPixel(matrizImagem[i][j]));
+        		repaint();
+        	}
+        } 
     }
-
-	private boolean equals(int[][] matrizA, int[][] matrizB) {
-        for (int i = 0; i < matrizA.length; i++) {
-        	for (int j = 0; j < matrizA[i].length; j++) {
-        		if (matrizA[i][j] != matrizB[i][j]){
-        			return false;
-                }
-            }
-        }
-        return true;
-	}
 	
 	static int corPixel(int corRGB){
 		Color cor = new Color(corRGB, corRGB, corRGB);
@@ -75,7 +75,7 @@ public class PanelGatoDeArnold extends JPanel {
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
-		g.drawImage(imagemGatoDeArnold, 0, 0, null);
+		g.drawImage(imagemNegativo, 0, 0, null);
 	}
 
 }

@@ -17,10 +17,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
-import com.br.view.filtros.Filtros;
+import com.br.view.filtros.TelaFiltros;
 import com.br.view.gatoArnold.TelaGatoDeArnold;
 import com.br.view.histograma.TelaHistograma;
 import com.br.view.operadores.TelaOperadores;
+import com.br.view.transformacoes.TelaTransformacoes;
 
 public class PanelInicial extends JPanel {
 
@@ -65,6 +66,7 @@ public class PanelInicial extends JPanel {
 		panelOpcaoInterno.setLayout(null);
 		
 		JButton botaoOperacoesLogicas = new JButton("Operadores Lógicos e Aritméticos");
+		botaoOperacoesLogicas.setToolTipText("");
 		botaoOperacoesLogicas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eventoDeMouse) {
 				
@@ -79,16 +81,16 @@ public class PanelInicial extends JPanel {
 		botaoOperacoesLogicas.setForeground(Color.WHITE);
 		botaoOperacoesLogicas.setBackground(new Color(0, 102, 255));
 		botaoOperacoesLogicas.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
-		botaoOperacoesLogicas.setBounds(10, 11, 393, 213);
+		botaoOperacoesLogicas.setBounds(15, 11, 257, 152);
 		panelOpcaoInterno.add(botaoOperacoesLogicas);
 		
 		JButton botaoFiltros = new JButton("Filtros");
 		botaoFiltros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Filtros filtros = new Filtros();
+				TelaFiltros telaFiltros = new TelaFiltros();
 				TelaInicial.contentPane.removeAll();
-				TelaInicial.contentPane.add(filtros);
+				TelaInicial.contentPane.add(telaFiltros);
 				TelaInicial.contentPane.validate();
 				TelaInicial.contentPane.repaint();
 				
@@ -97,7 +99,7 @@ public class PanelInicial extends JPanel {
 		botaoFiltros.setForeground(Color.WHITE);
 		botaoFiltros.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		botaoFiltros.setBackground(new Color(0, 102, 255));
-		botaoFiltros.setBounds(413, 11, 393, 213);
+		botaoFiltros.setBounds(282, 11, 257, 152);
 		panelOpcaoInterno.add(botaoFiltros);
 		
 		JButton botaoHistogramas = new JButton("Histogramas");
@@ -115,7 +117,7 @@ public class PanelInicial extends JPanel {
 		botaoHistogramas.setForeground(Color.WHITE);
 		botaoHistogramas.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		botaoHistogramas.setBackground(new Color(0, 102, 255));
-		botaoHistogramas.setBounds(10, 235, 393, 213);
+		botaoHistogramas.setBounds(549, 11, 257, 152);
 		panelOpcaoInterno.add(botaoHistogramas);
 		
 		JButton botaoGatoDeArnold = new JButton("Gato de Arnold");
@@ -132,8 +134,26 @@ public class PanelInicial extends JPanel {
 		botaoGatoDeArnold.setForeground(Color.WHITE);
 		botaoGatoDeArnold.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		botaoGatoDeArnold.setBackground(new Color(0, 102, 255));
-		botaoGatoDeArnold.setBounds(413, 235, 393, 213);
+		botaoGatoDeArnold.setBounds(15, 174, 257, 152);
 		panelOpcaoInterno.add(botaoGatoDeArnold);
+		
+		JButton botaoTransformacoes = new JButton("Transformações");
+		botaoTransformacoes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				TelaTransformacoes telaTransformacoes = new TelaTransformacoes();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaTransformacoes);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+
+			}
+		});
+		botaoTransformacoes.setForeground(Color.WHITE);
+		botaoTransformacoes.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
+		botaoTransformacoes.setBackground(new Color(0, 102, 255));
+		botaoTransformacoes.setBounds(282, 174, 257, 152);
+		panelOpcaoInterno.add(botaoTransformacoes);
 		
 		// FIM PANEL OPCAO INTERNA
 		
