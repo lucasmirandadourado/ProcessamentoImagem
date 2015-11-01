@@ -160,7 +160,11 @@ public class TelaTransformacoes extends JPanel {
 		botaoTransformacaoLogaritmo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eventoDeMouse) {
 				
-				
+				TelaTransformacaoLogaritmo telaTransformacaoLogaritmo = new TelaTransformacaoLogaritmo();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaTransformacaoLogaritmo);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
 				
 			}
 		});
