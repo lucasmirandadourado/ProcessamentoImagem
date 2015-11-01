@@ -142,7 +142,11 @@ public class TelaTransformacoes extends JPanel {
 		botaoTransformacaoGamma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eventoDeMouse) {
 				
-				
+				TelaTransformacaoGamma telaTransformacaoGamma= new TelaTransformacaoGamma();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaTransformacaoGamma);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
 				
 			}
 		});
