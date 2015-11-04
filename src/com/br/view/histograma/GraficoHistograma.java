@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import java.awt.Rectangle;
 import javax.swing.border.LineBorder;
 
-
 public class GraficoHistograma extends JPanel {
 
 	private static final String COMENTARIO = "#";
@@ -111,8 +110,7 @@ public class GraficoHistograma extends JPanel {
 					System.out.print("ERRO ");
 				}				
 			}
-		}
-             
+		}         
     }
 	
 	static int corPixel(int corRGB){

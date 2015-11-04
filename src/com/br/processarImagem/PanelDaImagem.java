@@ -97,6 +97,16 @@ public class PanelDaImagem extends JPanel {
              
     }
 	
+	
+	
+	public int[][] getMatrizImagem() {
+		return matrizImagem;
+	}
+
+	public void setMatrizImagem(int[][] matrizImagem) {
+		this.matrizImagem = matrizImagem;
+	}
+
 	static int corPixel(int corRGB){
 		Color cor = new Color(corRGB, corRGB, corRGB);
 		return cor.getRGB();

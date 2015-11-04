@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
+import com.br.view.equalizarImagem.TelaEqualizarImagem;
 import com.br.view.filtros.TelaFiltros;
 import com.br.view.gatoArnold.TelaGatoDeArnold;
 import com.br.view.histograma.TelaHistograma;
@@ -81,7 +82,7 @@ public class PanelInicial extends JPanel {
 		botaoOperacoesLogicas.setForeground(Color.WHITE);
 		botaoOperacoesLogicas.setBackground(new Color(0, 102, 255));
 		botaoOperacoesLogicas.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
-		botaoOperacoesLogicas.setBounds(15, 11, 257, 152);
+		botaoOperacoesLogicas.setBounds(15, 11, 385, 180);
 		panelOpcaoInterno.add(botaoOperacoesLogicas);
 		
 		JButton botaoFiltros = new JButton("Filtros");
@@ -99,7 +100,7 @@ public class PanelInicial extends JPanel {
 		botaoFiltros.setForeground(Color.WHITE);
 		botaoFiltros.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		botaoFiltros.setBackground(new Color(0, 102, 255));
-		botaoFiltros.setBounds(282, 11, 257, 152);
+		botaoFiltros.setBounds(415, 11, 385, 180);
 		panelOpcaoInterno.add(botaoFiltros);
 		
 		JButton botaoHistogramas = new JButton("Histogramas");
@@ -117,7 +118,7 @@ public class PanelInicial extends JPanel {
 		botaoHistogramas.setForeground(Color.WHITE);
 		botaoHistogramas.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		botaoHistogramas.setBackground(new Color(0, 102, 255));
-		botaoHistogramas.setBounds(549, 11, 257, 152);
+		botaoHistogramas.setBounds(15, 202, 385, 180);
 		panelOpcaoInterno.add(botaoHistogramas);
 		
 		JButton botaoGatoDeArnold = new JButton("Gato de Arnold");
@@ -134,7 +135,7 @@ public class PanelInicial extends JPanel {
 		botaoGatoDeArnold.setForeground(Color.WHITE);
 		botaoGatoDeArnold.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		botaoGatoDeArnold.setBackground(new Color(0, 102, 255));
-		botaoGatoDeArnold.setBounds(15, 174, 257, 152);
+		botaoGatoDeArnold.setBounds(415, 202, 385, 180);
 		panelOpcaoInterno.add(botaoGatoDeArnold);
 		
 		JButton botaoTransformacoes = new JButton("Transformações");
@@ -152,8 +153,26 @@ public class PanelInicial extends JPanel {
 		botaoTransformacoes.setForeground(Color.WHITE);
 		botaoTransformacoes.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		botaoTransformacoes.setBackground(new Color(0, 102, 255));
-		botaoTransformacoes.setBounds(282, 174, 257, 152);
+		botaoTransformacoes.setBounds(15, 393, 385, 180);
 		panelOpcaoInterno.add(botaoTransformacoes);
+		
+		JButton botaoEqualizarImagem = new JButton("Equalizar Imagem");
+		botaoEqualizarImagem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				TelaEqualizarImagem telaEqualizarImagem = new TelaEqualizarImagem();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaEqualizarImagem);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+				
+			}
+		});
+		botaoEqualizarImagem.setForeground(Color.WHITE);
+		botaoEqualizarImagem.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
+		botaoEqualizarImagem.setBackground(new Color(0, 102, 255));
+		botaoEqualizarImagem.setBounds(415, 393, 385, 180);
+		panelOpcaoInterno.add(botaoEqualizarImagem);
 		
 		// FIM PANEL OPCAO INTERNA
 		
