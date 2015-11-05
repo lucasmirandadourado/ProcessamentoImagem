@@ -86,6 +86,9 @@ public class EqualizarImagem {
 		contador = 0;
 		while(matrizDeEqualizacao[contador][0] != 1000){
 			matrizDeEqualizacao[contador][5] = (int)Math.round(255 * matrizDeEqualizacao[contador][4]);
+			if(matrizDeEqualizacao[contador][5] > 255){
+				matrizDeEqualizacao[contador][5] = 255;
+			}
 			contador = contador + 1;
 		}
 		
@@ -109,8 +112,30 @@ public class EqualizarImagem {
 		}
 		
 		
-
-		
+		for (int i = 0; i < matrizDaImagemOriginal.length; i++) {
+			for (int j = 0; j < matrizDaImagemOriginal[0].length; j++) {
+				
+				int valorDoPixel = matrizDaImagemOriginal[i][j];
+				int contador2 = 0;
+				
+				while(matrizDeEqualizacao[contador2][0] != valorDoPixel){
+					contador2 = contador2 + 1;
+				}
+				
+				matrizResultado[i][j] = (int)matrizDeEqualizacao[contador2][5];
+				
+			}
+			
+		}
+		/*
+		//printando a matriz resultado (matriz equalizada)
+		for (int i = 0; i < matrizResultado.length; i++) {
+			for (int j = 0; j < matrizResultado.length; j++) {
+				System.out.print(matrizResultado[i][j]+" ");
+			}
+			System.out.println();
+		}
+		*/
 
 		return matrizResultado;
 	}
