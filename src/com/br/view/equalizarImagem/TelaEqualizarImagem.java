@@ -23,6 +23,7 @@ import com.br.processarImagem.PanelDaImagemMatriz;
 import com.br.view.PanelInicial;
 import com.br.view.TelaInicial;
 import com.br.view.histograma.GraficoHistograma;
+import com.br.view.histograma.GraficoHistogramaMatriz;
 
 import javax.swing.border.LineBorder;
 
@@ -94,13 +95,18 @@ public class TelaEqualizarImagem extends JPanel {
 		PanelDaImagemMatriz panelDaImagemEqualizada = new PanelDaImagemMatriz();
 		panelDaImagemEqualizada.setLocation(221, 432);
 		add(panelDaImagemEqualizada);
-		
-		
-		
+
 		GraficoHistograma graficoHistograma = new GraficoHistograma();
 		graficoHistograma.setLocation(552, 135);
 		graficoHistograma.setBorder(new LineBorder(new Color(0, 0, 0)));
 		add(graficoHistograma);
+		
+
+		GraficoHistogramaMatriz graficoHistograma2 = new GraficoHistogramaMatriz();
+		graficoHistograma2.setLocation(552, 432);
+		graficoHistograma2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		add(graficoHistograma2);
+		
 
 		JButton btnEscolherImagem = new JButton("Escolher imagem");
 		btnEscolherImagem.addActionListener(new ActionListener() {
@@ -128,6 +134,8 @@ public class TelaEqualizarImagem extends JPanel {
 						int [][] matrizEqualizada = EqualizarImagem.equalizarImagem(matrizOriginal);
 						
 						panelDaImagemEqualizada.colocaImagemNoPainel(matrizEqualizada);
+						
+						graficoHistograma2.colocaImagemNoPainel(matrizEqualizada);
 						
 						repaint();
 
