@@ -4,7 +4,7 @@ package com.br.view.equalizarImagem;
 public class EqualizarImagem {
 	
 	
-	public static int[][] equalizarImagem(int matrizDaImagem [][]){
+	public static int[][] equalizarImagem(int matrizDaImagemOriginal [][]){
 		
 		/*
 		 * Posicao [i][0] - K 	- Nivel de Cinza
@@ -16,83 +16,101 @@ public class EqualizarImagem {
 		 */
 		
 		float [][] matrizDeEqualizacao = new float[255][6];
+		int [][] matrizResultado = new int [matrizDaImagemOriginal.length][matrizDaImagemOriginal[0].length];
 		
-		
-		//inicializando a matriz de equalizacao
-		for (int i = 0; i < matrizDaImagem.length - 1; i++) {
-			
+		//inicializando o nível de cinza e a frequência dos níveis de cinza
+		for (int i = 0; i < matrizDeEqualizacao.length; i++) {
 			matrizDeEqualizacao[i][0] = 1000;
 			matrizDeEqualizacao[i][1] = 0;
-			
 		}
 		
-		//calculando K, nK, rk, Pr(rK)
-		for (int i = 0; i < matrizDaImagem.length; i++) {
-			for (int j = 0; j < matrizDaImagem[0].length; j++) {
-				
-				matrizDeEqualizacao[matrizDaImagem[i][j]][0] = matrizDaImagem[i][j];
-				matrizDeEqualizacao[matrizDaImagem[i][j]][1] += 1;
-
-			}
-		}
-		
-		//calculando K, nK, rk, Pr(rK)
-				for (int i = 0; i < matrizDaImagem.length; i++) {
-					for (int j = 0; j < matrizDaImagem[0].length; j++) {
-						
-						matrizDeEqualizacao[matrizDaImagem[i][j]][2] = matrizDaImagem[i][j] / 255;
-						matrizDeEqualizacao[matrizDaImagem[i][j]][3] = matrizDeEqualizacao[matrizDaImagem[i][j]][1] / 255;
-					}
-				}
-
-
-		//ordenando a matrizDeEqualizacao pelos niveis de cinza
-		matrizDeEqualizacao = ordenarMatriz(matrizDeEqualizacao);
-		
-		//calcular Sk e Round(255 * Sk)
-		for (int i = 0; i < matrizDeEqualizacao[0].length; i++) {
-			
-			//se for a primeira posicao Sk = Pr(rk)
-			if(i == 0){
-				
-				matrizDeEqualizacao[i][4] = matrizDeEqualizacao[i][3];
-				matrizDeEqualizacao[i][5] = Math.round(matrizDeEqualizacao[i][4] * 255.0);
-				
-			} else {
-				matrizDeEqualizacao[i][4] = matrizDeEqualizacao[i][3] + matrizDeEqualizacao[i - 1][4];
-				matrizDeEqualizacao[i][5] = Math.round(matrizDeEqualizacao[i][4] * 255.0);
-			}
-			
-		}
-
-		for (int i = 0; i < matrizDaImagem.length; i++) {
-			System.out.println("Nivel de Cinza: "+matrizDeEqualizacao[i][0]);
-			System.out.println("Frequência do Nível de cinza : "+matrizDeEqualizacao[i][1]);
-			System.out.println("rk : "+matrizDeEqualizacao[i][2]);
-			System.out.println("Probabilidade de rk : "+matrizDeEqualizacao[i][3]);
-			System.out.println("Sk : "+matrizDeEqualizacao[i][4]);
-			System.out.println("Round(255 * Sk) : "+matrizDeEqualizacao[i][1]);
-			System.out.println("\n");
-			
-		}
-		
-		//gerando a matriz bidimensional de niveis de cinza equalizados
-		int [][] matrizResultado = new int [matrizDaImagem.length][matrizDaImagem[0].length];
-		
-		for (int i = 0; i < matrizDaImagem.length; i++) {
+		//Inserindo os níveis de cinza, incrementando as suas frequências de repetições e calculando rK (valor do pixel / 255)
+		for (int i = 0; i < matrizResultado.length; i++) {
 			for (int j = 0; j < matrizResultado.length; j++) {
-				
-				int posicao = 0;
-				boolean flag = false;
-				while(matrizDaImagem[i][j] != matrizDeEqualizacao[posicao][0]){
-					posicao += 1;
-				}
-				
-				matrizResultado[i][j] = (int)matrizDeEqualizacao[posicao][5];
-				
+				matrizDeEqualizacao[matrizDaImagemOriginal[i][j]][0] = matrizDaImagemOriginal[i][j];
+				matrizDeEqualizacao[matrizDaImagemOriginal[i][j]][1] += 1;
+				matrizDeEqualizacao[matrizDaImagemOriginal[i][j]][2] = matrizDaImagemOriginal[i][j] / 255;
 			}
-			
 		}
+		/*
+		for (int i = 0; i < matrizDaImagemOriginal.length; i++) {
+			for (int j = 0; j < matrizDaImagemOriginal.length; j++) {
+				System.out.print(matrizDaImagemOriginal[i][j]+" ");
+			}
+			System.out.println();
+		}
+		
+		System.out.println("\n");
+		
+		for (int i = 0; i < matrizDeEqualizacao.length; i++) {
+			System.out.println("Nível de Cinza = "+matrizDeEqualizacao[i][0]);
+			System.out.println("Frequência do Nível de Cinza = "+matrizDeEqualizacao[i][1]);
+			System.out.println("Valor de rk: "+matrizDeEqualizacao[i][2]);
+			System.out.println();
+		}
+		
+		System.out.println("\n");
+		*/
+		matrizDeEqualizacao = ordenarMatriz(matrizDeEqualizacao);
+		/*
+		for (int i = 0; i < matrizDeEqualizacao.length; i++) {
+			System.out.println("Nível de Cinza = "+matrizDeEqualizacao[i][0]);
+			System.out.println("Frequência do Nível de Cinza = "+matrizDeEqualizacao[i][1]);
+			System.out.println("Valor de rk: "+matrizDeEqualizacao[i][2]);
+			System.out.println();
+		}
+		*/
+		
+		//calculando Pr(rk)
+		int contador = 0;
+		while(matrizDeEqualizacao[contador][0] != 1000){
+			
+			//frequencia do pixel dividido pela quantidade de pixels
+			matrizDeEqualizacao[contador][3] = matrizDeEqualizacao[contador][1] / (255*255);
+			contador = contador + 1;
+		}
+		
+		//calculando Sk - Soma acumulada de Pr(rk)
+		contador = 0;
+		while(matrizDeEqualizacao[contador][0] != 1000){
+			
+			if(contador == 0){
+				matrizDeEqualizacao[contador][4] = matrizDeEqualizacao[contador][3];
+			} else {
+				matrizDeEqualizacao[contador][4] = matrizDeEqualizacao[contador][3] + matrizDeEqualizacao[contador - 1][4];
+			}
+			contador = contador + 1;
+		}
+		
+		//calculando Round(255 * Sk)
+		contador = 0;
+		while(matrizDeEqualizacao[contador][0] != 1000){
+			matrizDeEqualizacao[contador][5] = (int)Math.round(255 * matrizDeEqualizacao[contador][4]);
+			contador = contador + 1;
+		}
+		
+		//printando a matriz original
+		for (int i = 0; i < matrizDaImagemOriginal.length; i++) {
+			for (int j = 0; j < matrizDaImagemOriginal.length; j++) {
+				System.out.print(matrizDaImagemOriginal[i][j]+" ");
+			}
+			System.out.println();
+		}
+		
+		//printando a tabela do excel
+		System.out.println("\n");
+		System.out.print("K\t\tNk\t\trK\t\tPr(rk)\t\t\tSk\t\tRound(255 * sk)\n");
+		contador = 0;
+		while(matrizDeEqualizacao[contador][0] != 1000){
+			System.out.print(matrizDeEqualizacao[contador][0]+"\t\t"+matrizDeEqualizacao[contador][1]+"\t\t"+
+					matrizDeEqualizacao[contador][2]+"\t\t"+matrizDeEqualizacao[contador][3]+"\t\t"+
+					matrizDeEqualizacao[contador][4]+"\t\t"+matrizDeEqualizacao[contador][5]+"\t\t\n");
+			contador = contador + 1;
+		}
+		
+		
+
+		
 
 		return matrizResultado;
 	}

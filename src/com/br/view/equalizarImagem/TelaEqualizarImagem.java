@@ -8,12 +8,7 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.beans.FeatureDescriptor;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -21,9 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
 import com.br.processarImagem.PanelDaImagem;
-import com.br.processarImagem.PanelDaImagemMatriz;
 import com.br.view.PanelInicial;
 import com.br.view.TelaInicial;
 import com.br.view.histograma.GraficoHistograma;
@@ -95,10 +88,7 @@ public class TelaEqualizarImagem extends JPanel {
 		panelDaImagem1.setLocation(221, 135);
 		add(panelDaImagem1);
 		
-		PanelDaImagemMatriz panelDaImagemEqualizada = new PanelDaImagemMatriz();
-		panelDaImagemEqualizada.setLocation(552, 400);
-		panelDaImagemEqualizada.setBorder(new LineBorder(new Color(0, 0, 0)));
-		add(panelDaImagemEqualizada);
+		
 		
 		GraficoHistograma graficoHistograma = new GraficoHistograma();
 		graficoHistograma.setLocation(552, 135);
@@ -126,9 +116,10 @@ public class TelaEqualizarImagem extends JPanel {
 
 						graficoHistograma.colocaImagemNoPainel(file.getPath());
 						
-						int [][] matrizEqualizada = EqualizarImagem.equalizarImagem(panelDaImagem1.getMatrizImagem());
+						int [][] matrizOriginal = panelDaImagem1.getMatrizImagem();
 						
-						panelDaImagemEqualizada.colocaImagemNoPainel(matrizEqualizada);
+						int [][] matrizEqualizada = EqualizarImagem.equalizarImagem(matrizOriginal);
+						
 						repaint();
 
 					}
