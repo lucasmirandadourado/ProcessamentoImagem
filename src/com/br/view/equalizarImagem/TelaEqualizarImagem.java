@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -16,7 +17,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
 import com.br.processarImagem.PanelDaImagem;
+import com.br.processarImagem.PanelDaImagemMatriz;
 import com.br.view.PanelInicial;
 import com.br.view.TelaInicial;
 import com.br.view.histograma.GraficoHistograma;
@@ -88,6 +91,10 @@ public class TelaEqualizarImagem extends JPanel {
 		panelDaImagem1.setLocation(221, 135);
 		add(panelDaImagem1);
 		
+		PanelDaImagemMatriz panelDaImagemEqualizada = new PanelDaImagemMatriz();
+		panelDaImagemEqualizada.setLocation(221, 432);
+		add(panelDaImagemEqualizada);
+		
 		
 		
 		GraficoHistograma graficoHistograma = new GraficoHistograma();
@@ -119,6 +126,8 @@ public class TelaEqualizarImagem extends JPanel {
 						int [][] matrizOriginal = panelDaImagem1.getMatrizImagem();
 						
 						int [][] matrizEqualizada = EqualizarImagem.equalizarImagem(matrizOriginal);
+						
+						panelDaImagemEqualizada.colocaImagemNoPainel(matrizEqualizada);
 						
 						repaint();
 
