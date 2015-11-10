@@ -1,4 +1,4 @@
-package com.br.view.gatoArnold;
+package com.br.view.gatoDeArnold;
 
 import java.awt.Color;
 import java.awt.Graphics;

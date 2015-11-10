@@ -19,7 +19,7 @@ import javax.swing.SwingConstants;
 
 import com.br.view.equalizarImagem.TelaEqualizarImagem;
 import com.br.view.filtros.TelaFiltros;
-import com.br.view.gatoArnold.TelaGatoDeArnold;
+import com.br.view.gatoDeArnold.TelaGatoDeArnold;
 import com.br.view.histograma.TelaHistograma;
 import com.br.view.operadores.TelaOperadores;
 import com.br.view.transformacoes.TelaTransformacoes;

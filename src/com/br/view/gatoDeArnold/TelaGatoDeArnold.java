@@ -1,4 +1,4 @@
-package com.br.view.gatoArnold;
+package com.br.view.gatoDeArnold;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -6,6 +6,7 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -104,7 +105,13 @@ public class TelaGatoDeArnold extends JPanel {
 						//Cria um file onde eh armazenada a imagem
 						File file = fileChooser.getSelectedFile();
 						
-						panelDaImagem1.colocaImagemNoPainel(file.getPath());			
+						GatoDeArnold gatoDeArnold;
+						
+						
+                            gatoDeArnold = new GatoDeArnold(new ImagemPGM(file));
+                            gatoDeArnold.mostraGato();
+                            gatoDeArnold.executa();
+						
 						repaint();
 					}
 					
