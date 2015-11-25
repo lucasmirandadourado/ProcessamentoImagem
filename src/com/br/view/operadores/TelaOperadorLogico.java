@@ -12,7 +12,11 @@ import javax.swing.SwingConstants;
 
 import com.br.view.PanelInicial;
 import com.br.view.TelaInicial;
+import com.br.view.equalizarImagem.TelaEqualizarImagem;
+import com.br.view.filtros.TelaFiltros;
+import com.br.view.gatoDeArnold.TelaGatoDeArnold;
 import com.br.view.histograma.TelaHistograma;
+import com.br.view.transformacoes.TelaTransformacoes;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -57,11 +61,22 @@ public class TelaOperadorLogico extends JPanel {
 		panelOpcaoLateral.add(botaoPaginaInicial);
 		
 		JButton botaoMenuFiltros = new JButton("Filtros");
+		botaoMenuFiltros.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TelaFiltros telaFiltros = new TelaFiltros();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaFiltros);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+			}
+		});
 		botaoMenuFiltros.setHorizontalAlignment(SwingConstants.LEFT);
 		botaoMenuFiltros.setForeground(Color.BLACK);
 		botaoMenuFiltros.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 		botaoMenuFiltros.setBackground(SystemColor.scrollbar);
-		botaoMenuFiltros.setBounds(10, 258, 184, 39);
+		botaoMenuFiltros.setBounds(10, 256, 184, 39);
 		panelOpcaoLateral.add(botaoMenuFiltros);
 		
 		JButton botaoMenuOperadores = new JButton("Operadores");
@@ -80,7 +95,7 @@ public class TelaOperadorLogico extends JPanel {
 		botaoMenuOperadores.setForeground(Color.BLACK);
 		botaoMenuOperadores.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 		botaoMenuOperadores.setBackground(SystemColor.scrollbar);
-		botaoMenuOperadores.setBounds(10, 141, 184, 39);
+		botaoMenuOperadores.setBounds(10, 142, 184, 39);
 		panelOpcaoLateral.add(botaoMenuOperadores);
 		
 		JButton botaoMenuHistograma = new JButton("Histogramas");
@@ -99,7 +114,7 @@ public class TelaOperadorLogico extends JPanel {
 		botaoMenuHistograma.setForeground(Color.BLACK);
 		botaoMenuHistograma.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 		botaoMenuHistograma.setBackground(SystemColor.scrollbar);
-		botaoMenuHistograma.setBounds(10, 296, 184, 39);
+		botaoMenuHistograma.setBounds(10, 368, 184, 39);
 		panelOpcaoLateral.add(botaoMenuHistograma);
 		
 		JLabel lblImg = new JLabel("");
@@ -123,7 +138,7 @@ public class TelaOperadorLogico extends JPanel {
 		botaoOperadoresAritmeticos.setForeground(Color.BLACK);
 		botaoOperadoresAritmeticos.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 		botaoOperadoresAritmeticos.setBackground(SystemColor.scrollbar);
-		botaoOperadoresAritmeticos.setBounds(20, 181, 174, 39);
+		botaoOperadoresAritmeticos.setBounds(20, 178, 174, 39);
 		panelOpcaoLateral.add(botaoOperadoresAritmeticos);
 		
 		JButton botaoOperadoresLogicos = new JButton("Lógicos");
@@ -131,8 +146,67 @@ public class TelaOperadorLogico extends JPanel {
 		botaoOperadoresLogicos.setForeground(Color.BLACK);
 		botaoOperadoresLogicos.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 		botaoOperadoresLogicos.setBackground(Color.GRAY);
-		botaoOperadoresLogicos.setBounds(20, 220, 174, 39);
+		botaoOperadoresLogicos.setBounds(20, 217, 174, 39);
 		panelOpcaoLateral.add(botaoOperadoresLogicos);
+		
+		
+
+		JButton botaoMenuGato = new JButton("Gato de Arnold");
+		botaoMenuGato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaGatoDeArnold gato = new TelaGatoDeArnold();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(gato);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+				
+			}
+		});
+		botaoMenuGato.setHorizontalAlignment(SwingConstants.LEFT);
+		botaoMenuGato.setForeground(Color.BLACK);
+		botaoMenuGato.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoMenuGato.setBackground(SystemColor.scrollbar);
+		botaoMenuGato.setBounds(10, 330, 184, 39);
+		panelOpcaoLateral.add(botaoMenuGato);
+		
+		JButton botaoMenuTransformacoes = new JButton("Transforma\u00E7\u00F5es");
+		botaoMenuTransformacoes.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TelaTransformacoes telaTransformacoes = new TelaTransformacoes();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaTransformacoes);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+				
+			}
+		});
+		
+		JButton botaoMenuEquilizarImagem = new JButton("Equalizar imagem");
+		botaoMenuEquilizarImagem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TelaEqualizarImagem telaEqualizar = new TelaEqualizarImagem();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaEqualizar);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+			}
+		});
+		botaoMenuEquilizarImagem.setHorizontalAlignment(SwingConstants.LEFT);
+		botaoMenuEquilizarImagem.setForeground(Color.BLACK);
+		botaoMenuEquilizarImagem.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoMenuEquilizarImagem.setBackground(SystemColor.scrollbar);
+		botaoMenuEquilizarImagem.setBounds(10, 405, 184, 39);
+		panelOpcaoLateral.add(botaoMenuEquilizarImagem);
+		botaoMenuTransformacoes.setHorizontalAlignment(SwingConstants.LEFT);
+		botaoMenuTransformacoes.setForeground(Color.BLACK);
+		botaoMenuTransformacoes.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoMenuTransformacoes.setBackground(SystemColor.scrollbar);
+		botaoMenuTransformacoes.setBounds(10, 293, 184, 39);
+		panelOpcaoLateral.add(botaoMenuTransformacoes);
 		
 		// FIM PANEL LATERAL
 		

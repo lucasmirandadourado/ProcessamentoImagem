@@ -21,6 +21,7 @@ import com.br.algoritmos.Panel_OperadorAritmetico_Subtracao;
 import com.br.processarImagem.PanelDaImagem;
 import com.br.view.PanelInicial;
 import com.br.view.TelaInicial;
+import com.br.view.filtros.TelaFiltros;
 import com.br.view.histograma.TelaHistograma;
 
 public class TelaOperadorAritmeticoSubtracao extends JPanel {
@@ -152,6 +153,17 @@ public class TelaOperadorAritmeticoSubtracao extends JPanel {
 			panelOpcaoLateral.add(botaoMenuDivisao);
 			
 			JButton botaoMenuFiltros = new JButton("Filtros");
+			botaoMenuFiltros.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					TelaFiltros telaFiltro = new TelaFiltros();
+					TelaInicial.contentPane.removeAll();
+					TelaInicial.contentPane.add(telaFiltro);
+					TelaInicial.contentPane.validate();
+					TelaInicial.contentPane.repaint();
+				}
+			});
 			botaoMenuFiltros.setHorizontalAlignment(SwingConstants.LEFT);
 			botaoMenuFiltros.setForeground(Color.BLACK);
 			botaoMenuFiltros.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
@@ -251,7 +263,7 @@ public class TelaOperadorAritmeticoSubtracao extends JPanel {
 						
 						//Instanciacao de fileChooser e alteracao do diretorio para buscar a imagem
 						final JFileChooser fileChooser = new JFileChooser();
-						fileChooser.setCurrentDirectory(new File ("src/"));
+						fileChooser.setCurrentDirectory(new File ("src/imagens"));
 						
 						//Verificacao do fileChooser
 						if (fileChooser.showOpenDialog(botaoSelecionarImagem1) == JFileChooser.APPROVE_OPTION) {
@@ -285,7 +297,7 @@ public class TelaOperadorAritmeticoSubtracao extends JPanel {
 						
 						//Instanciacao de fileChooser e alteracao do diretorio para buscar a imagem
 						final JFileChooser fileChooser = new JFileChooser();
-						fileChooser.setCurrentDirectory(new File ("src/"));
+						fileChooser.setCurrentDirectory(new File ("src/imagens"));
 						
 						//Verificacao do fileChooser
 						if (fileChooser.showOpenDialog(botaoSelecionarImagem2) == JFileChooser.APPROVE_OPTION) {

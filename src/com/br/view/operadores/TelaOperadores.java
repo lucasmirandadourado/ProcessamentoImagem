@@ -12,7 +12,12 @@ import javax.swing.SwingConstants;
 
 import com.br.view.PanelInicial;
 import com.br.view.TelaInicial;
+import com.br.view.equalizarImagem.TelaEqualizarImagem;
+import com.br.view.filtros.TelaFiltros;
+import com.br.view.gatoDeArnold.GatoDeArnold;
+import com.br.view.gatoDeArnold.TelaGatoDeArnold;
 import com.br.view.histograma.TelaHistograma;
+import com.br.view.transformacoes.TelaTransformacoes;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -65,6 +70,17 @@ public class TelaOperadores extends JPanel {
 		panelOpcaoLateral.add(botaoOperadores);
 		
 		JButton botaoMenuFiltros = new JButton("Filtros");
+		botaoMenuFiltros.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TelaFiltros telaFiltros = new TelaFiltros();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaFiltros);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+			}
+		});
 		botaoMenuFiltros.setHorizontalAlignment(SwingConstants.LEFT);
 		botaoMenuFiltros.setForeground(Color.BLACK);
 		botaoMenuFiltros.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
@@ -95,6 +111,63 @@ public class TelaOperadores extends JPanel {
 		lblImg.setIcon(new ImageIcon(TelaOperadoresAritmeticos.class.getResource("/com/br/images/logo.jpg")));
 		lblImg.setBounds(0, 0, 194, 103);
 		panelOpcaoLateral.add(lblImg);
+		
+		JButton botaoMenuGato = new JButton("Gato de Arnold");
+		botaoMenuGato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaGatoDeArnold gato = new TelaGatoDeArnold();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(gato);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+				
+			}
+		});
+		botaoMenuGato.setHorizontalAlignment(SwingConstants.LEFT);
+		botaoMenuGato.setForeground(Color.BLACK);
+		botaoMenuGato.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoMenuGato.setBackground(SystemColor.scrollbar);
+		botaoMenuGato.setBounds(10, 255, 184, 39);
+		panelOpcaoLateral.add(botaoMenuGato);
+		
+		JButton botaoMenuTransformacoes = new JButton("Transforma\u00E7\u00F5es");
+		botaoMenuTransformacoes.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TelaTransformacoes telaTransformacoes = new TelaTransformacoes();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaTransformacoes);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+				
+			}
+		});
+		botaoMenuTransformacoes.setHorizontalAlignment(SwingConstants.LEFT);
+		botaoMenuTransformacoes.setForeground(Color.BLACK);
+		botaoMenuTransformacoes.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoMenuTransformacoes.setBackground(SystemColor.scrollbar);
+		botaoMenuTransformacoes.setBounds(10, 292, 184, 39);
+		panelOpcaoLateral.add(botaoMenuTransformacoes);
+		
+		JButton botaoMenuEquilizarImagem = new JButton("Equalizar imagem");
+		botaoMenuEquilizarImagem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TelaEqualizarImagem telaEqualizar = new TelaEqualizarImagem();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaEqualizar);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+			}
+		});
+		botaoMenuEquilizarImagem.setHorizontalAlignment(SwingConstants.LEFT);
+		botaoMenuEquilizarImagem.setForeground(Color.BLACK);
+		botaoMenuEquilizarImagem.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoMenuEquilizarImagem.setBackground(SystemColor.scrollbar);
+		botaoMenuEquilizarImagem.setBounds(10, 328, 184, 39);
+		panelOpcaoLateral.add(botaoMenuEquilizarImagem);
 		
 		// FIM PANEL LATERAL
 		
@@ -159,5 +232,4 @@ public class TelaOperadores extends JPanel {
 		panelSuperior.add(labelOperadores);
 			
 	}
-
 }

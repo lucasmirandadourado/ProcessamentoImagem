@@ -22,7 +22,11 @@ import com.br.algoritmos.Panel_OperadorLogico_OR;
 import com.br.processarImagem.PanelDaImagem;
 import com.br.view.PanelInicial;
 import com.br.view.TelaInicial;
+import com.br.view.equalizarImagem.TelaEqualizarImagem;
+import com.br.view.filtros.TelaFiltros;
+import com.br.view.gatoDeArnold.TelaGatoDeArnold;
 import com.br.view.histograma.TelaHistograma;
+import com.br.view.transformacoes.TelaTransformacoes;
 
 public class TelaOperadorLogicoOR extends JPanel {
 
@@ -139,6 +143,17 @@ public class TelaOperadorLogicoOR extends JPanel {
 		panelOpcaoLateral.add(botaoMenuXOR);
 		
 		JButton botaoMenuFiltros = new JButton("Filtros");
+		botaoMenuFiltros.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TelaFiltros telaFiltro = new TelaFiltros();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaFiltro);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+			}
+		});
 		botaoMenuFiltros.setHorizontalAlignment(SwingConstants.LEFT);
 		botaoMenuFiltros.setForeground(Color.BLACK);
 		botaoMenuFiltros.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
@@ -208,6 +223,56 @@ public class TelaOperadorLogicoOR extends JPanel {
 		botaoOperadoresLogicos.setBounds(20, 217, 174, 39);
 		panelOpcaoLateral.add(botaoOperadoresLogicos);
 		
+		JButton botaoMenuGatoDeArnold = new JButton("Gato de Arnold");
+		botaoMenuGatoDeArnold.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaGatoDeArnold telaGato = new TelaGatoDeArnold();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaGato);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+			}
+		});
+		botaoMenuGatoDeArnold.setHorizontalAlignment(SwingConstants.LEFT);
+		botaoMenuGatoDeArnold.setForeground(Color.BLACK);
+		botaoMenuGatoDeArnold.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoMenuGatoDeArnold.setBackground(SystemColor.scrollbar);
+		botaoMenuGatoDeArnold.setBounds(10, 448, 184, 39);
+		panelOpcaoLateral.add(botaoMenuGatoDeArnold);
+		
+		JButton botaoMenuTransformacao = new JButton("Transforma\u00E7\u00E3o");
+		botaoMenuTransformacao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaTransformacoes telatransf = new TelaTransformacoes();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telatransf);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+			}
+		});
+		botaoMenuTransformacao.setHorizontalAlignment(SwingConstants.LEFT);
+		botaoMenuTransformacao.setForeground(Color.BLACK);
+		botaoMenuTransformacao.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoMenuTransformacao.setBackground(SystemColor.scrollbar);
+		botaoMenuTransformacao.setBounds(10, 486, 184, 39);
+		panelOpcaoLateral.add(botaoMenuTransformacao);
+		
+		JButton botaoMenuEqualizacao = new JButton("Equaliza\u00E7\u00E3o");
+		botaoMenuEqualizacao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaEqualizarImagem telaGato = new TelaEqualizarImagem();
+				TelaInicial.contentPane.removeAll();
+				TelaInicial.contentPane.add(telaGato);
+				TelaInicial.contentPane.validate();
+				TelaInicial.contentPane.repaint();
+			}
+		});
+		botaoMenuEqualizacao.setHorizontalAlignment(SwingConstants.LEFT);
+		botaoMenuEqualizacao.setForeground(Color.BLACK);
+		botaoMenuEqualizacao.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoMenuEqualizacao.setBackground(SystemColor.scrollbar);
+		botaoMenuEqualizacao.setBounds(10, 524, 184, 39);
+		panelOpcaoLateral.add(botaoMenuEqualizacao);
 		// FIM PANEL LATERAL
 		
 		// INICIO PANEL OPCAO INTERNA
@@ -238,7 +303,7 @@ public class TelaOperadorLogicoOR extends JPanel {
 					
 					//Instanciacao de fileChooser e alteracao do diretorio para buscar a imagem
 					final JFileChooser fileChooser = new JFileChooser();
-					fileChooser.setCurrentDirectory(new File ("src/"));
+					fileChooser.setCurrentDirectory(new File ("src/imagens"));
 					
 					//Verificacao do fileChooser
 					if (fileChooser.showOpenDialog(botaoSelecionarImagem1) == JFileChooser.APPROVE_OPTION) {
@@ -272,7 +337,7 @@ public class TelaOperadorLogicoOR extends JPanel {
 					
 					//Instanciacao de fileChooser e alteracao do diretorio para buscar a imagem
 					final JFileChooser fileChooser = new JFileChooser();
-					fileChooser.setCurrentDirectory(new File ("src/"));
+					fileChooser.setCurrentDirectory(new File ("src/imagens"));
 					
 					//Verificacao do fileChooser
 					if (fileChooser.showOpenDialog(botaoSelecionarImagem2) == JFileChooser.APPROVE_OPTION) {
