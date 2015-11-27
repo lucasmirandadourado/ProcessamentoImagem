@@ -27,13 +27,12 @@ import com.br.view.histograma.TelaHistograma;
 import com.br.view.operadores.TelaOperadores;
 import com.br.view.transformacoes.TelaTransformacoes;
 
-
 public class TelaGatoDeArnold extends JPanel {
 
 	PanelDaImagem panelDaImagem1 = new PanelDaImagem();
-	PanelGatoDeArnold panelDaImagem2 = new PanelGatoDeArnold();
-	
-	public TelaGatoDeArnold(){
+	public static PanelGatoDeArnold panelDaImagem2 = new PanelGatoDeArnold();
+
+	public TelaGatoDeArnold() {
 		setSize(1024, 720);
 		setLayout(null);
 		setVisible(true);
@@ -58,29 +57,31 @@ public class TelaGatoDeArnold extends JPanel {
 			}
 		});
 		botaoPaginaInicial.setHorizontalAlignment(SwingConstants.LEFT);
-		botaoPaginaInicial.setIcon(new ImageIcon(PanelInicial.class.getResource("/com/icon/home.png")));
+		botaoPaginaInicial.setIcon(new ImageIcon(PanelInicial.class
+				.getResource("/com/icon/home.png")));
 		botaoPaginaInicial.setBounds(0, 102, 194, 39);
 		botaoPaginaInicial.setForeground(Color.BLACK);
 		botaoPaginaInicial.setBackground(SystemColor.scrollbar);
-		botaoPaginaInicial.setFont(new Font("Segoe UI Semilight", Font.PLAIN,18));
+		botaoPaginaInicial.setFont(new Font("Segoe UI Semilight", Font.PLAIN,
+				18));
 		panelOpcaoLateral.add(botaoPaginaInicial);
 
 		JLabel lblImg = new JLabel("");
-		lblImg.setIcon(new ImageIcon(TelaHistograma.class.getResource("/com/br/images/logo.jpg")));
+		lblImg.setIcon(new ImageIcon(TelaHistograma.class
+				.getResource("/com/br/images/logo.jpg")));
 		lblImg.setBounds(0, 0, 194, 103);
 		panelOpcaoLateral.add(lblImg);
-
 
 		JButton botaoOperadores = new JButton("Operadores");
 		botaoOperadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eventoDeMouse) {
-				
+
 				TelaOperadores telaOperadores = new TelaOperadores();
 				TelaInicial.contentPane.removeAll();
 				TelaInicial.contentPane.add(telaOperadores);
 				TelaInicial.contentPane.validate();
 				TelaInicial.contentPane.repaint();
-				
+
 			}
 		});
 		botaoOperadores.setHorizontalAlignment(SwingConstants.LEFT);
@@ -89,10 +90,10 @@ public class TelaGatoDeArnold extends JPanel {
 		botaoOperadores.setBackground(SystemColor.scrollbar);
 		botaoOperadores.setBounds(10, 141, 184, 39);
 		panelOpcaoLateral.add(botaoOperadores);
-		
+
 		JButton botaoMenuFiltros = new JButton("Filtros");
-botaoMenuFiltros.addActionListener(new ActionListener() {
-			
+		botaoMenuFiltros.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				TelaFiltros telaFiltro = new TelaFiltros();
@@ -104,11 +105,12 @@ botaoMenuFiltros.addActionListener(new ActionListener() {
 		});
 		botaoMenuFiltros.setHorizontalAlignment(SwingConstants.LEFT);
 		botaoMenuFiltros.setForeground(Color.BLACK);
-		botaoMenuFiltros.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoMenuFiltros
+				.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 		botaoMenuFiltros.setBackground(SystemColor.scrollbar);
 		botaoMenuFiltros.setBounds(10, 180, 184, 39);
 		panelOpcaoLateral.add(botaoMenuFiltros);
-		
+
 		JButton botaoMenuHistograma = new JButton("Histogramas");
 		botaoMenuHistograma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -118,17 +120,17 @@ botaoMenuFiltros.addActionListener(new ActionListener() {
 				TelaInicial.contentPane.add(telaHistograma);
 				TelaInicial.contentPane.validate();
 				TelaInicial.contentPane.repaint();
-				
+
 			}
 		});
 		botaoMenuHistograma.setHorizontalAlignment(SwingConstants.LEFT);
 		botaoMenuHistograma.setForeground(Color.BLACK);
-		botaoMenuHistograma.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoMenuHistograma.setFont(new Font("Segoe UI Semilight", Font.PLAIN,
+				14));
 		botaoMenuHistograma.setBackground(SystemColor.scrollbar);
 		botaoMenuHistograma.setBounds(10, 217, 184, 39);
 		panelOpcaoLateral.add(botaoMenuHistograma);
-		
-		
+
 		JButton btnGatoDeArnold = new JButton("Gato de Arnold");
 		btnGatoDeArnold.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -145,10 +147,10 @@ botaoMenuFiltros.addActionListener(new ActionListener() {
 		btnGatoDeArnold.setBackground(SystemColor.scrollbar);
 		btnGatoDeArnold.setBounds(10, 253, 184, 39);
 		panelOpcaoLateral.add(btnGatoDeArnold);
-		
+
 		JButton botaoMenuTransformacao = new JButton("Transforma\u00E7\u00E3o");
 		botaoMenuTransformacao.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				com.br.view.transformacoes.TelaTransformacoes telaTransformacao = new com.br.view.transformacoes.TelaTransformacoes();
@@ -160,14 +162,15 @@ botaoMenuFiltros.addActionListener(new ActionListener() {
 		});
 		botaoMenuTransformacao.setHorizontalAlignment(SwingConstants.LEFT);
 		botaoMenuTransformacao.setForeground(Color.BLACK);
-		botaoMenuTransformacao.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoMenuTransformacao.setFont(new Font("Segoe UI Semilight",
+				Font.PLAIN, 14));
 		botaoMenuTransformacao.setBackground(SystemColor.scrollbar);
 		botaoMenuTransformacao.setBounds(10, 290, 184, 39);
 		panelOpcaoLateral.add(botaoMenuTransformacao);
-		
+
 		JButton botaoMenuEqualizacao = new JButton("Equaliza\u00E7\u00E3o");
 		botaoMenuEqualizacao.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				TelaEqualizarImagem TelaEqualizacao = new TelaEqualizarImagem();
@@ -179,7 +182,8 @@ botaoMenuFiltros.addActionListener(new ActionListener() {
 		});
 		botaoMenuEqualizacao.setHorizontalAlignment(SwingConstants.LEFT);
 		botaoMenuEqualizacao.setForeground(Color.BLACK);
-		botaoMenuEqualizacao.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+		botaoMenuEqualizacao.setFont(new Font("Segoe UI Semilight", Font.PLAIN,
+				14));
 		botaoMenuEqualizacao.setBackground(SystemColor.scrollbar);
 		botaoMenuEqualizacao.setBounds(10, 327, 184, 39);
 		panelOpcaoLateral.add(botaoMenuEqualizacao);
@@ -195,67 +199,89 @@ botaoMenuFiltros.addActionListener(new ActionListener() {
 		// Corpo do sistema
 		JLabel labelGatoDeArnold = new JLabel("Gato de Arnold");
 		labelGatoDeArnold.setForeground(Color.WHITE);
-		labelGatoDeArnold.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 24));
+		labelGatoDeArnold
+				.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 24));
 		labelGatoDeArnold.setBounds(10, 24, 730, 55);
 		panelSuperior.add(labelGatoDeArnold);
-		
+
 		panelDaImagem1 = new PanelDaImagem();
 		panelDaImagem1.setBounds(204, 113, 250, 250);
 		add(panelDaImagem1);
-		
+
 		panelDaImagem2.setBounds(491, 410, 250, 250);
 		panelDaImagem2.setVisible(true);
 		add(panelDaImagem2);
-		
+
 		JButton botaoSelecionarImagem = new JButton("Escolher imagem");
 		botaoSelecionarImagem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eventoDeMouse) {
-				
-				try{  
-					
-					//Instanciacao de fileChooser e alteracao do diretorio para buscar a imagem
+
+				try {
+
+					// Instanciacao de fileChooser e alteracao do diretorio para
+					// buscar a imagem
 					final JFileChooser fileChooser = new JFileChooser();
-					fileChooser.setCurrentDirectory(new File ("src/"));
-					
-					//Verificacao do fileChooser
+					fileChooser.setCurrentDirectory(new File("src/imagens"));
+
+					// Verificacao do fileChooser
 					if (fileChooser.showOpenDialog(botaoSelecionarImagem) == JFileChooser.APPROVE_OPTION) {
-						
-						//Cria um file onde eh armazenada a imagem
+
+						// Cria um file onde eh armazenada a imagem
 						File file = fileChooser.getSelectedFile();
-						
-						GatoDeArnold gatoDeArnold;
-						
-						
-                            gatoDeArnold = new GatoDeArnold(new ImagemPGM(file));
-                            gatoDeArnold.mostraGato();
-                            gatoDeArnold.executa();
-						
+						panelDaImagem1.colocaImagemNoPainel(file.getPath());
+
 						repaint();
 					}
-					
-				}catch(Exception erro){  
-				        
-					JOptionPane.showMessageDialog(null, "Não foi possivel carregar a imagem.");  
-				        
-				}    
-				
+
+				} catch (Exception erro) {
+
+					JOptionPane.showMessageDialog(null,
+							"Não foi possivel carregar a imagem.");
+
+				}
+
 			}
 		});
-		botaoSelecionarImagem.setFont(new Font("Segoe UI Light", Font.BOLD, 14));
+		botaoSelecionarImagem
+				.setFont(new Font("Segoe UI Light", Font.BOLD, 14));
 		botaoSelecionarImagem.setBackground(new Color(0, 102, 255));
 		botaoSelecionarImagem.setBounds(204, 364, 250, 35);
 		add(botaoSelecionarImagem);
-		
+
 		JButton botaoGatoDeArnold = new JButton("Processar Gato de Arnold");
 		botaoGatoDeArnold.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eventoDeMouse) {
-				
-				panelDaImagem2.colocaImagemNoPainel(panelDaImagem1.altura, panelDaImagem1.largura, panelDaImagem1.matrizImagem);
-				
+
+				Thread minhaThread = new Thread() {
+
+					public void run() {
+						for (int i = 0; i < 256; i++) {
+
+							GatoDeArnold gatoDeArnold = new GatoDeArnold(
+									panelDaImagem1.matrizImagem);
+
+							gatoDeArnold.mostraGato();
+							gatoDeArnold.executa();
+
+							repaint();
+
+							try {
+								sleep(100);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}
+				};
+				minhaThread.start();
 			}
+
 		});
+
 		botaoGatoDeArnold.setForeground(Color.WHITE);
-		botaoGatoDeArnold.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
+		botaoGatoDeArnold
+				.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		botaoGatoDeArnold.setBackground(new Color(0, 102, 255));
 		botaoGatoDeArnold.setBounds(204, 410, 250, 250);
 		add(botaoGatoDeArnold);
