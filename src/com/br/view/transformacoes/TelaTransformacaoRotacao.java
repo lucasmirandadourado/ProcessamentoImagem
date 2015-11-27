@@ -3,13 +3,20 @@ package com.br.view.transformacoes;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.br.algoritmos.Panel_Transformacao_Gamma;
+import com.br.processarImagem.PanelDaImagem;
 import com.br.view.PanelInicial;
 import com.br.view.TelaInicial;
 import com.br.view.equalizarImagem.TelaEqualizarImagem;
@@ -18,38 +25,37 @@ import com.br.view.gatoDeArnold.TelaGatoDeArnold;
 import com.br.view.histograma.TelaHistograma;
 import com.br.view.operadores.TelaOperadores;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
-public class TelaTransformacoes extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
-	public TelaTransformacoes() {
+public class TelaTransformacaoRotacao extends JPanel {
 
+	PanelDaImagem panelDaImagem1 = new PanelDaImagem();
+	Panel_Transformacao_Gamma panelDaImagem2 = new Panel_Transformacao_Gamma();
+	private JTextField textField_valorGamma;
+	
+	public TelaTransformacaoRotacao(){
 		setSize(1024, 720);
 		setLayout(null);
 		setVisible(true);
-		
-		// INICIO PANEL OPCAO LATERAL
-		
+
+		// Painel lateral
 		JPanel panelOpcaoLateral = new JPanel();
 		panelOpcaoLateral.setBackground(SystemColor.scrollbar);
 		panelOpcaoLateral.setBounds(0, 0, 194, 720);
 		add(panelOpcaoLateral);
 		panelOpcaoLateral.setLayout(null);
-		
+
 		JButton botaoPaginaInicial = new JButton("Página Inicial");
 		botaoPaginaInicial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eventoDeMouse) {
-				
+
 				PanelInicial panelInicial = new PanelInicial();
 				TelaInicial.contentPane.removeAll();
 				TelaInicial.contentPane.add(panelInicial);
 				TelaInicial.contentPane.validate();
 				TelaInicial.contentPane.repaint();
-				
+
 			}
 		});
 		botaoPaginaInicial.setHorizontalAlignment(SwingConstants.LEFT);
@@ -57,14 +63,14 @@ public class TelaTransformacoes extends JPanel {
 		botaoPaginaInicial.setBounds(0, 102, 194, 39);
 		botaoPaginaInicial.setForeground(Color.BLACK);
 		botaoPaginaInicial.setBackground(SystemColor.scrollbar);
-		botaoPaginaInicial.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
+		botaoPaginaInicial.setFont(new Font("Segoe UI Semilight", Font.PLAIN,18));
 		panelOpcaoLateral.add(botaoPaginaInicial);
-				
+
 		JLabel lblImg = new JLabel("");
-		lblImg.setIcon(new ImageIcon(TelaTransformacoes.class.getResource("/com/br/images/logo.jpg")));
+		lblImg.setIcon(new ImageIcon(TelaHistograma.class.getResource("/com/br/images/logo.jpg")));
 		lblImg.setBounds(0, 0, 194, 103);
 		panelOpcaoLateral.add(lblImg);
-		
+
 
 		JButton botaoOperadores = new JButton("Operadores");
 		botaoOperadores.addActionListener(new ActionListener() {
@@ -86,7 +92,7 @@ public class TelaTransformacoes extends JPanel {
 		panelOpcaoLateral.add(botaoOperadores);
 		
 		JButton botaoMenuFiltros = new JButton("Filtros");
-		botaoMenuFiltros.addActionListener(new ActionListener() {
+botaoMenuFiltros.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -179,117 +185,86 @@ public class TelaTransformacoes extends JPanel {
 		botaoMenuEqualizacao.setBounds(10, 327, 184, 39);
 		panelOpcaoLateral.add(botaoMenuEqualizacao);
 
-		
-		// FIM PANEL LATERAL
-		
-		// INICIO PANEL OPCAO INTERNA
-		
-		JPanel panelOpcaoInterno = new JPanel();
-		panelOpcaoInterno.setBackground(Color.WHITE);
-		panelOpcaoInterno.setBounds(194, 102, 830, 618);
-		add(panelOpcaoInterno);
-		panelOpcaoInterno.setLayout(null);
-		
-		JButton botaoTransformacaoNegativo = new JButton("Negativo");
-		botaoTransformacaoNegativo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent eventoDeMouse) {
-				
-				TelaTransformacaoNegativo telaTransformacaoNegativo= new TelaTransformacaoNegativo();
-				TelaInicial.contentPane.removeAll();
-				TelaInicial.contentPane.add(telaTransformacaoNegativo);
-				TelaInicial.contentPane.validate();
-				TelaInicial.contentPane.repaint();
-				
-			}
-		});
-		botaoTransformacaoNegativo.setForeground(Color.WHITE);
-		botaoTransformacaoNegativo.setBackground(new Color(0, 102, 255));
-		botaoTransformacaoNegativo.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
-		botaoTransformacaoNegativo.setBounds(10, 11, 393, 213);
-		panelOpcaoInterno.add(botaoTransformacaoNegativo);
-		
-		JButton botaoTransformacaoGamma = new JButton("Gamma");
-		botaoTransformacaoGamma.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent eventoDeMouse) {
-				
-				TelaTransformacaoGamma telaTransformacaoGamma= new TelaTransformacaoGamma();
-				TelaInicial.contentPane.removeAll();
-				TelaInicial.contentPane.add(telaTransformacaoGamma);
-				TelaInicial.contentPane.validate();
-				TelaInicial.contentPane.repaint();
-				
-			}
-		});
-		botaoTransformacaoGamma.setForeground(Color.WHITE);
-		botaoTransformacaoGamma.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
-		botaoTransformacaoGamma.setBackground(new Color(0, 102, 255));
-		botaoTransformacaoGamma.setBounds(413, 11, 393, 213);
-		panelOpcaoInterno.add(botaoTransformacaoGamma);
-		
-		JButton botaoTransformacaoLogaritmo = new JButton("Logaritmo");
-		botaoTransformacaoLogaritmo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent eventoDeMouse) {
-				
-				TelaTransformacaoLogaritmo telaTransformacaoLogaritmo = new TelaTransformacaoLogaritmo();
-				TelaInicial.contentPane.removeAll();
-				TelaInicial.contentPane.add(telaTransformacaoLogaritmo);
-				TelaInicial.contentPane.validate();
-				TelaInicial.contentPane.repaint();
-				
-			}
-		});
-		botaoTransformacaoLogaritmo.setForeground(Color.WHITE);
-		botaoTransformacaoLogaritmo.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
-		botaoTransformacaoLogaritmo.setBackground(new Color(0, 102, 255));
-		botaoTransformacaoLogaritmo.setBounds(10, 235, 393, 213);
-		panelOpcaoInterno.add(botaoTransformacaoLogaritmo);
-		
-		JButton btnRotacao = new JButton("Rota\u00E7\u00E3o");
-		btnRotacao.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				TelaTransformacaoRotacao telaTransformacaoRotacao = new TelaTransformacaoRotacao();
-				TelaInicial.contentPane.removeAll();
-				TelaInicial.contentPane.add(telaTransformacaoRotacao);
-				TelaInicial.contentPane.validate();
-				TelaInicial.contentPane.repaint();
-				
-			}
-		});
-		btnRotacao.setForeground(Color.WHITE);
-		btnRotacao.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
-		btnRotacao.setBackground(new Color(0, 102, 255));
-		btnRotacao.setBounds(413, 235, 393, 213);
-		panelOpcaoInterno.add(btnRotacao);
-		
-		JButton btnEscala = new JButton("Escala");
-		btnEscala.setForeground(Color.WHITE);
-		btnEscala.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
-		btnEscala.setBackground(new Color(0, 102, 255));
-		btnEscala.setBounds(10, 458, 393, 213);
-		panelOpcaoInterno.add(btnEscala);
-		
-		JButton btnCisalhamento = new JButton("Cisalhamento");
-		btnCisalhamento.setForeground(Color.WHITE);
-		btnCisalhamento.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
-		btnCisalhamento.setBackground(new Color(0, 102, 255));
-		btnCisalhamento.setBounds(413, 458, 393, 213);
-		panelOpcaoInterno.add(btnCisalhamento);
-		
-		// FIM PANEL OPCAO INTERNA
-		
-		//INICIO PANEL SUPERIOR
-		
+		// INICIO PANEL SUPERIOR
+
 		JPanel panelSuperior = new JPanel();
 		panelSuperior.setBackground(SystemColor.windowBorder);
 		panelSuperior.setBounds(194, 0, 830, 102);
 		add(panelSuperior);
 		panelSuperior.setLayout(null);
+
+		// Corpo do sistema
+		JLabel labelTransformacaoGamma = new JLabel("Transforma\u00E7\u00E3o > Rota\u00E7\u00E3o");
+		labelTransformacaoGamma.setForeground(Color.WHITE);
+		labelTransformacaoGamma.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 24));
+		labelTransformacaoGamma.setBounds(10, 24, 730, 55);
+		panelSuperior.add(labelTransformacaoGamma);
 		
-		JLabel labelOperacoesAritmeticas = new JLabel("Transformações");
-		labelOperacoesAritmeticas.setForeground(Color.WHITE);
-		labelOperacoesAritmeticas.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 24));
-		labelOperacoesAritmeticas.setBounds(10, 24, 730, 55);
-		panelSuperior.add(labelOperacoesAritmeticas);
-			
+		panelDaImagem1 = new PanelDaImagem();
+		panelDaImagem1.setBounds(204, 113, 250, 250);
+		add(panelDaImagem1);
+		
+		panelDaImagem2.setBounds(491, 410, 250, 250);
+		panelDaImagem2.setVisible(true);
+		add(panelDaImagem2);
+		
+		JButton botaoSelecionarImagem = new JButton("Escolher imagem");
+		botaoSelecionarImagem.setForeground(Color.WHITE);
+		botaoSelecionarImagem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				try{  
+					
+					//Instanciacao de fileChooser e alteracao do diretorio para buscar a imagem
+					final JFileChooser fileChooser = new JFileChooser();
+					fileChooser.setCurrentDirectory(new File ("src/"));
+					
+					//Verificacao do fileChooser
+					if (fileChooser.showOpenDialog(botaoSelecionarImagem) == JFileChooser.APPROVE_OPTION) {
+						
+						//Cria um file onde eh armazenada a imagem
+						File file = fileChooser.getSelectedFile();
+						
+						panelDaImagem1.colocaImagemNoPainel(file.getPath());			
+						repaint();
+					}
+					
+				}catch(Exception erro){  
+				        
+					JOptionPane.showMessageDialog(null, "Não foi possivel carregar a imagem.");  
+				        
+				}    
+				
+			}
+		});
+		botaoSelecionarImagem.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
+		botaoSelecionarImagem.setBackground(new Color(0, 102, 255));
+		botaoSelecionarImagem.setBounds(204, 364, 250, 35);
+		add(botaoSelecionarImagem);
+		
+		textField_valorGamma = new JTextField();
+		textField_valorGamma.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
+		textField_valorGamma.setBounds(491, 207, 250, 46);
+		add(textField_valorGamma);
+		textField_valorGamma.setColumns(10);
+		
+		JButton botaoGamma = new JButton("Processar Gamma");
+		botaoGamma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eventoDeMouse) {
+				
+				
+			}
+		});
+		botaoGamma.setForeground(Color.WHITE);
+		botaoGamma.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
+		botaoGamma.setBackground(new Color(0, 102, 255));
+		botaoGamma.setBounds(204, 410, 250, 250);
+		add(botaoGamma);
+		
+		JLabel labelGamma = new JLabel("Rota\u00E7\u00E3o");
+		labelGamma.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
+		labelGamma.setBounds(491, 174, 194, 35);
+		add(labelGamma);
+
 	}
 }
