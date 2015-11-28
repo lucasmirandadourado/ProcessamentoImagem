@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.swing.ImageIcon;
@@ -26,13 +27,16 @@ import com.br.view.histograma.TelaHistograma;
 import com.br.view.operadores.TelaOperadores;
 
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 
 public class TelaTransformacaoRotacao extends JPanel {
 
 	PanelDaImagem panelDaImagem1 = new PanelDaImagem();
-	Panel_Transformacao_Gamma panelDaImagem2 = new Panel_Transformacao_Gamma();
-	private JTextField textField_valorGamma;
+	public static Panel_Transformacao_Gamma panelDaImagem2 = new Panel_Transformacao_Gamma();
+	
+	BufferedImage buffered;
 	
 	public TelaTransformacaoRotacao(){
 		setSize(1024, 720);
@@ -208,6 +212,12 @@ botaoMenuFiltros.addActionListener(new ActionListener() {
 		panelDaImagem2.setVisible(true);
 		add(panelDaImagem2);
 		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "90", "120", "180"}));
+		comboBox.setBounds(491, 219, 174, 35);
+		add(comboBox);
+
+		
 		JButton botaoSelecionarImagem = new JButton("Escolher imagem");
 		botaoSelecionarImagem.setForeground(Color.WHITE);
 		botaoSelecionarImagem.addActionListener(new ActionListener() {
@@ -217,15 +227,16 @@ botaoMenuFiltros.addActionListener(new ActionListener() {
 					
 					//Instanciacao de fileChooser e alteracao do diretorio para buscar a imagem
 					final JFileChooser fileChooser = new JFileChooser();
-					fileChooser.setCurrentDirectory(new File ("src/"));
+					fileChooser.setCurrentDirectory(new File ("src/imagens"));
 					
 					//Verificacao do fileChooser
 					if (fileChooser.showOpenDialog(botaoSelecionarImagem) == JFileChooser.APPROVE_OPTION) {
 						
 						//Cria um file onde eh armazenada a imagem
 						File file = fileChooser.getSelectedFile();
-						
-						panelDaImagem1.colocaImagemNoPainel(file.getPath());			
+					
+						panelDaImagem1.colocaImagemNoPainel(file.getPath());
+						buffered = panelDaImagem1.imagemOriginal;
 						repaint();
 					}
 					
@@ -242,17 +253,21 @@ botaoMenuFiltros.addActionListener(new ActionListener() {
 		botaoSelecionarImagem.setBounds(204, 364, 250, 35);
 		add(botaoSelecionarImagem);
 		
-		textField_valorGamma = new JTextField();
-		textField_valorGamma.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
-		textField_valorGamma.setBounds(491, 207, 250, 46);
-		add(textField_valorGamma);
-		textField_valorGamma.setColumns(10);
-		
 		JButton botaoGamma = new JButton("Processar Gamma");
 		botaoGamma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eventoDeMouse) {
 				
-				
+				Transformacao transformacao = new Transformacao();
+				try {
+					transformacao.rotação(255, 255, panelDaImagem1.matrizImagem, 
+							Integer.valueOf((String) comboBox.getSelectedItem()));
+//					
+//					transformacao.rotacao(buffered, Integer.valueOf((String) comboBox.getSelectedItem()));
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
 			}
 		});
 		botaoGamma.setForeground(Color.WHITE);
@@ -265,6 +280,7 @@ botaoMenuFiltros.addActionListener(new ActionListener() {
 		labelGamma.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 18));
 		labelGamma.setBounds(491, 174, 194, 35);
 		add(labelGamma);
-
+		
+	
 	}
 }
